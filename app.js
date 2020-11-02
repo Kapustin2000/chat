@@ -1,15 +1,17 @@
-'use strict';
+// import './src/config/bootstrap';
+
+import DotEnv from 'dotenv'; DotEnv.config();
 
 import Express from 'express';
 
-const port = 8080;
-const host = 'localhost';
-
 const app = new Express();
 
-app.listen(port, () => {
-    console.log(`running on port ${port}`);
+const HTTP_PORT = process.env['HTTP_PORT'];
+
+import { router } from 'src/config/router'
+
+app.listen(HTTP_PORT, () => {
+    console.log(`running on port ${HTTP_PORT}`);
 });
-app.get('/', (req, res) => {
-    res.send('Hello World');
-});
+
+app.use(router);
