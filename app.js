@@ -8,7 +8,7 @@ const app = new Express();
 
 const HTTP_PORT = process.env['HTTP_PORT'];
 
-import { router } from 'src/config/router'
+import { router } from '/src/config/router'
 
 app.listen(HTTP_PORT, () => {
     console.log(`running on port ${HTTP_PORT}`);
