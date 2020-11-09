@@ -1,4 +1,4 @@
-FROM node:15.0.1-alpine3.10
+FROM node:14
 
 WORKDIR /usr/src/app
 
@@ -10,5 +10,5 @@ COPY . .
 
 EXPOSE 8080
 
-CMD npm run start:dev
+CMD npm run postinstall && npm run start:dev
 

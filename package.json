@@ -2,16 +2,21 @@
   "name": "docker-nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
-    "start:dev": "nodemon app.js"
+    "start:dev": "nodemon --es-module-specifier-resolution=node -L app.js",
+    "postinstall": "link-module-alias"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "link-module-alias": "^1.2.0"
+  },
+  "_moduleAliases": {
+    "src": "./src"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"

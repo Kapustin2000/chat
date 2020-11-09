@@ -1,8 +1,8 @@
-import './src/config/bootstrap.js';
+import 'src/config/bootstrap';
 
 import DotEnv from 'dotenv'; DotEnv.config();
 import Express from 'express';
-import { router } from './src/config/router.js'
+import { router } from 'src/config/router'
 
 const app = new Express();
 
