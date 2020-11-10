@@ -16,3 +16,14 @@ services:
       - HTTP_PORT=8080
     volumes:
       - .:/usr/src/app
+    depends_on:
+      - db
+    environment:
+      - DB_URL=mongodb://db:27017/chat
+  db:
+    restart: always
+    container_name: db
+    image: mongo:4
+    volumes:
+      - ./data:/data/db
+

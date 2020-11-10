@@ -13,7 +13,8 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "link-module-alias": "^1.2.0"
+    "link-module-alias": "^1.2.0",
+    "mongoose": "^5.10.13"
   },
   "_moduleAliases": {
     "src": "./src"
