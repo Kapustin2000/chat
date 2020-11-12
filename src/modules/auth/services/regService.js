@@ -21,7 +21,11 @@ const RegService = {
 
         await user.setPassword(password);
 
-        return await user.save();
+        user = await user.save();
+
+        return {
+            token : user.generateJWT()
+        }
     },
     async checkIfEmailIsBusy(email) {
         const emailExists = await User.findOne({email: email});
