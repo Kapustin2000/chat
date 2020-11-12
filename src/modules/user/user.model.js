@@ -16,6 +16,10 @@ const UserSchema = new Mongoose.Schema({
    }
 });
 
+UserSchema.methods.setPassword = function (pass) {
+    this.password = pass;
+};
+
 const User = Mongoose.model('User', UserSchema);
 
 export { User };

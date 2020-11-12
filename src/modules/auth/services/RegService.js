@@ -1,6 +1,17 @@
+import { User } from 'src/modules/user/user.model';
+
 const RegService = {
     async reg(data) {
-        console.log("i am here");
+       const { name, email, password } = data;
+
+       let user = new User({
+           email: email,
+           name: name
+       });
+
+        user.setPassword(password);
+
+        return await user.save();
     }
 };
 

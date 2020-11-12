@@ -4,7 +4,7 @@ import { RegService } from 'src/modules/auth/services/RegService';
 
 const router = Express.Router();
 
-router.get('/reg', (req, res, next) => {
+router.post('/reg', (req, res, next) => {
     RegService
         .reg(req.body)
         .then(data => res.json(data))
