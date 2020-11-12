@@ -1,6 +1,6 @@
 import Express from 'express';
 
-import { RegService } from 'src/modules/auth/services/RegService';
+import { RegService } from 'src/modules/auth/services/regService';
 
 const router = Express.Router();
 
