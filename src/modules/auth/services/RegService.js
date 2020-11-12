@@ -1,7 +1,15 @@
 import { User } from 'src/modules/user/user.model';
+import { RegisterValidation } from 'src/modules/auth/services/validator';
 
 const RegService = {
     async reg(data) {
+
+       const { error } = RegisterValidation(data);
+
+       if( error ) {
+           throw error.details[0].message;
+       }
+
        const { name, email, password } = data;
 
        this.checkIfEmailIsBusy(email);
