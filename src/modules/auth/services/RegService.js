@@ -9,7 +9,7 @@ const RegService = {
            name: name
        });
 
-        user.setPassword(password);
+        await user.setPassword(password);
 
         return await user.save();
     }
