@@ -24,7 +24,7 @@ const RegService = {
         user = await user.save();
 
         return {
-            token : user.generateJWT()
+            token : await user.generateJWT()
         }
     },
     async checkIfEmailIsBusy(email) {

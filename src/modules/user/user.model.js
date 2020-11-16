@@ -29,6 +29,10 @@ UserSchema.methods.generateJWT = async function () {
     }, process.env['TOKEN_SECRET']);
 };
 
+UserSchema.methods.comparePassword = async function (pass) {
+    return await Bcrypt.compare(pass, this.password);
+};
+
 const User = Mongoose.model('User', UserSchema);
 
 export { User };
