@@ -1,7 +1,7 @@
 import Express from 'express';
 
 import { RegService } from 'src/modules/auth/services/regService';
-import { LoginService } from 'src/modules/auth/services/LoginService';
+import { LoginService } from 'src/modules/auth/services/loginService';
 
 const router = Express.Router();
 
