@@ -1,7 +1,12 @@
 import Express from 'express';
 const router = new Express.Router();
 
+/** Controllers **/
 import { AuthController } from 'src/modules/auth/auth.controller';
+import { TodoController } from 'src/modules/todo/todo.controller';
+
+/** Middlewares **/
+import { AuthMiddleware } from 'src/modules/auth/auth.middleware';
 
 
 router.get('/', (req, res) => {
@@ -9,5 +14,7 @@ router.get('/', (req, res) => {
 });
 
 router.use('/auth', AuthController);
+
+router.use('/todo', [AuthMiddleware, TodoController]);
 
 export { router };
