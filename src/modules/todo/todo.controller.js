@@ -1,9 +1,12 @@
 import Express from 'express';
+import { TodoRepository as Repository } from 'src/modules/todo/repositories/todoRepository';
 
 const router = Express.Router();
 
-router.get('/', function (req, res, next) {
-    res.json([]);
+router.get('/', async function (req, res, next) {
+    let todos = Repository.get();
+
+    res.json(todos);
 });
 
 router.post('/', function (req, res, next) {
