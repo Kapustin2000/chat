@@ -4,7 +4,6 @@ import JWT from 'jsonwebtoken';
 const AuthMiddleware = function (req, res, next) {
    auth(req.headers.authorization)
        .then(user => {
-           console.log(user);
            req.payload = { user };
            next();
        })
