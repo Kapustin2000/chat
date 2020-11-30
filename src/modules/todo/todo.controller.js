@@ -5,7 +5,7 @@ import { TodoMiddleware } from 'src/modules/todo/todo.middleware';
 const router = Express.Router();
 
 router.get('/', async function (req, res, next) {
-    let todos = await Repository.get();
+    let todos = await Repository.get(req.payload.user._id);
 
     res.json(todos);
 });
