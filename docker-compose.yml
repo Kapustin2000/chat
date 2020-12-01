@@ -3,6 +3,15 @@
 version: "3"
 
 services:
+  proxy:
+    restart: always
+    container_name: proxy
+    build:
+      context: .
+      dockerfile: ./docker/nginx/local.nginx.dockerfile
+    ports:
+      - 443:443
+      - 80:80
 
   api:
     restart: always
@@ -26,4 +35,3 @@ services:
     image: mongo:4
     volumes:
       - ./data:/data/db
-
