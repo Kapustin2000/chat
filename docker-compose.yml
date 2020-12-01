@@ -16,13 +16,13 @@ services:
   api:
     restart: always
     build: 
-      context: .
+      context: ./api
       dockerfile: Dockerfile
     ports:
       - 8080:8080
     container_name: api
     volumes:
-      - .:/usr/src/app
+      - ./api:/usr/src/app
     depends_on:
       - db
     environment:
