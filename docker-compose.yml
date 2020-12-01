@@ -35,3 +35,13 @@ services:
     image: mongo:4
     volumes:
       - ./data:/data/db
+  web:
+    restart: always
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - PORT=3000
+    container_name: web
