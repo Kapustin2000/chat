@@ -17,4 +17,9 @@ router.use('/auth', AuthController);
 
 router.use('/todo', [AuthMiddleware, TodoController]);
 
+router.use('/user', [AuthMiddleware, (req, res, next) => {
+    res.json(req.payload.user);
+}]);
+
+
 export { router };
