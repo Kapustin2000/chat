@@ -28,7 +28,7 @@
                 this.create({
                     'title': title
                 }).then(() => {
-                    this.title = false;
+                    this.title = "";
                 }).catch(err => {
                     console.log(err);
                 });

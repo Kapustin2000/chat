@@ -19,7 +19,8 @@
     "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
     "link-module-alias": "^1.2.0",
-    "mongoose": "^5.10.13"
+    "mongoose": "^5.10.13",
+    "socket.io": "^3.0.3"
   },
   "_moduleAliases": {
     "src": "./src"

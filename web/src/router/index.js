@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Todo from '../views/Todo.vue'
+import Home from '@/views/Home.vue'
+import Todo from '@/views/Todo.vue'
+import Chat from '@/views/chat/Chat.vue'
 
 const routes = [
   {
@@ -17,6 +18,11 @@ const routes = [
       path: '/todo',
       name: 'Todo',
       component: Todo
+  },
+  {
+      path: '/chat',
+      name: 'chat',
+      component: Chat
   },
 ];
 
