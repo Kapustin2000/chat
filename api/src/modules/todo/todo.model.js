@@ -11,6 +11,8 @@ const TodoSchema = new Mongoose.Schema({
    }
 });
 
+// scheme.pre('save', () => {})
+
 const Todo = Mongoose.model('Todo', TodoSchema);
 
 export { Todo };

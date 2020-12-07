@@ -1,13 +1,20 @@
+import { Message } from 'src/modules/chat/message.model';
+
 const ChatService = {
     async save(data) {
-        const { text, user_id } = data;
+        const { text, from_user_id, to_user_id } = data;
 
-        let todo = new Todo({
-            title: title,
-            user_id: user_id
+        let message = new Message({
+            text: text,
+            from_user_id: from_user_id,
+            to_user_id: to_user_id
         });
 
-        return await todo.save();
+        message = await message.save();
+
+        message.privateMessageTo(to_user_id);
+
+        return message;
     },
 };
 

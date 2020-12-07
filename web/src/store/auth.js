@@ -21,8 +21,8 @@ export default {
             return new Promise((resolve, reject) => {
                 axios.post('auth/login', credentials)
                     .then((response) => {
-                        let {token } = response.data;
-                        context.commit('SET_TOKEN', response.token);
+                        let { token } = response.data;
+                        context.commit('SET_TOKEN', token);
                         cookie.set('TOKEN', token, { expires: 120 });
                     })
                     .then(resolve)

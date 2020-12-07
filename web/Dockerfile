@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:14 as build
 
 WORKDIR /usr/src/app
 
@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+RUN npm run build
 
-RUN npm run serve
+FROM # light httpd as server
+
+COPY --from build /usr/src/app/dist # /var/www любая паблик папка

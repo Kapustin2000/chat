@@ -1,22 +1,25 @@
 import Express from 'express';
 
-import { RegService } from 'src/modules/auth/services/regService';
-import { LoginService } from 'src/modules/auth/services/loginService';
+import { ChatService } from 'src/modules/chat/services/chatService';
+import { ChatRepository  as Repository } from 'src/modules/chat/repositories/chatRepository';
 
 const router = Express.Router();
 
 router.get('/', (req, res, next) => {
-    RegService
-        .reg(req.body)
-        .then(data => res.json(data))
-        .catch(next)
+    Repository.get(req.payload.user._id)
+        .then(messages => res.json(messages))
+        .catch(next);
 });
 
 router.post('/', (req, res, next) => {
-    LoginService
-        .login(req.body)
+    ChatService
+        .save({
+            from_user_id: req.payload.user.id,
+            to_user_id: req.body.to_user_id,
+            text: req.body.text
+        })
         .then(data => res.json(data))
         .catch(next)
 });
 
-export { router as AuthController };
+export { router as ChatController };

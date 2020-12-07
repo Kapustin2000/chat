@@ -18,6 +18,7 @@
         data(){
           return {
               message: "",
+              users: []
           }
         },
         methods: {
@@ -28,7 +29,8 @@
 
                 this.send({
                     text: message,
-                    user: user
+                    from_user: user,
+                    to_user_id: "5fcdfb28a398f2007c93b673"
                 })
             }
         },

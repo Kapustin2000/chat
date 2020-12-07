@@ -37,4 +37,4 @@ const auth = async function (auth) {
 
     throw 'aunthorized';
 };
-export { AuthMiddleware };
+export { AuthMiddleware, auth };

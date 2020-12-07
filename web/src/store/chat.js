@@ -1,16 +1,18 @@
 import io from 'socket.io-client';
-
+import axios from 'axios';
+import cookie from 'js-cookie';
 
 export default {
     namespaced: true,
 
     state: {
-        socket: io('http://localhost:8080'),
-        messages: [
-            {
-                text: "I am new message"
-            }
-        ],
+        socket: io('http://localhost:8080', {
+                auth: {
+                    token:  `Bearer ${cookie.get('TOKEN')}`
+                        //(context) => { return (context.rootState.Auth.token || "no token"); }
+                }
+        }),
+        messages: [],
     },
     mutations: {
         SET_MESSAGES(state, messages) {
@@ -22,14 +24,35 @@ export default {
     },
     actions: {
         send(context, message) {
-            context.commit('ADD_MESSAGE', message);
+            return new Promise((resolve, reject) => {
+                axios.post('/chat', message)
+                    .then(resolve)
+                    .catch(err => {
+                        reject(err);
+                    })
+            });
         },
         fetchMessages(context) {
-            context.commit('SET_MESSAGES', []);
+            return  new Promise((resolve, reject) => {
+                axios.get('/chat')
+                    .then(response => {
+                        let messages = response.data;
+                        context.commit('SET_MESSAGES', messages);
+                    })
+                    .then(resolve)
+                    .catch(err => {
+                        reject(err);
+                    })
+            });
         },
-        initChat({ getters}) {
+        initChat(context) {
+
+            let { getters } = context;
+
+            context.dispatch('fetchMessages');
+
             getters.socket.on('MESSAGE', (data) => {
-                console.log(data);
+                context.commit('ADD_MESSAGE', data);
             })
         }
     },

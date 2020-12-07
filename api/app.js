@@ -15,6 +15,6 @@ const server = app.listen(HTTP_PORT, () => {
     console.log(`running on port ${HTTP_PORT}`);
 });
 
-global.socket = initSocket(server);
+global.io = initSocket(server);
 app.use(BodyParser.json());
 app.use(router);
