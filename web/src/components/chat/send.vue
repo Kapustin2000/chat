@@ -31,7 +31,7 @@
                     text: message,
                     from_user: user,
                     to_user_id: "5fcdfb28a398f2007c93b673"
-                })
+                });
             }
         },
         computed: {

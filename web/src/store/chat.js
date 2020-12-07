@@ -26,6 +26,10 @@ export default {
         send(context, message) {
             return new Promise((resolve, reject) => {
                 axios.post('/chat', message)
+                    .then(response => {
+                        let message = response.data;
+                        context.commit('ADD_MESSAGE', message);
+                    })
                     .then(resolve)
                     .catch(err => {
                         reject(err);
