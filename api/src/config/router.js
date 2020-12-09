@@ -1,4 +1,5 @@
 import Express from 'express';
+
 const router = new Express.Router();
 
 /** Controllers **/
@@ -8,7 +9,6 @@ import { ChatController } from 'src/modules/chat/chat.controller';
 
 /** Middlewares **/
 import { AuthMiddleware } from 'src/modules/auth/auth.middleware';
-
 
 router.get('/', (req, res) => {
     res.send("Hello world");
@@ -23,6 +23,5 @@ router.use('/chat', [AuthMiddleware, ChatController]);
 router.use('/user', [AuthMiddleware, (req, res, next) => {
     res.json(req.payload.user);
 }]);
-
 
 export { router };

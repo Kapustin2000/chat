@@ -17,7 +17,7 @@ router.post('/', (req, res, next) => {
         .catch(next);
 });
 
-router.get('/:id', [TodoMiddleware], (req, res, next) => {
+router.get('/:id', [], (req, res, next) => {
     Repository.find(req.params.id, req.payload.user._id)
          .then(todo => res.json(todo))
          .catch(next);

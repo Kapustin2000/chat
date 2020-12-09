@@ -26,7 +26,6 @@ const TodoService = {
     async delete(data) {
         const { user_id, id } = data;
 
-        console.log(id, user_id);
         return await Todo.deleteOne({
             _id: id,
             user_id: user_id
