@@ -20,5 +20,4 @@ global.io = initSocket(server);
 app.use(BodyParser.json());
 modelBinding();
 
-console.log(router);
 app.use(router);
