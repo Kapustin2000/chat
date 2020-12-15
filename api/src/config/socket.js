@@ -25,6 +25,11 @@ const initSocket = (server) => {
     });
 
     io.on('connection', (socket) => {
+        socket.join("default");
+
+        io.in("default").emit('MESSAGE', {
+            text: "Socket "+ socket.id + "joined"
+        });
         socket.on('SEND_MESSAGE', (message) => {
             io.emit('MESSAGE', message)
         });

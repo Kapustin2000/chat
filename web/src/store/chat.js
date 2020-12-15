@@ -56,6 +56,7 @@ export default {
             context.dispatch('fetchMessages');
 
             getters.socket.on('MESSAGE', (data) => {
+                console.log(data,123 );
                 context.commit('ADD_MESSAGE', data);
             })
         }

@@ -10,6 +10,6 @@ COPY . .
 
 RUN npm run build
 
-FROM # light httpd as server
-
-COPY --from build /usr/src/app/dist # /var/www любая паблик папка
+#FROM # light httpd as server
+#
+#COPY --from build /usr/src/app/dist # /var/www любая паблик папка

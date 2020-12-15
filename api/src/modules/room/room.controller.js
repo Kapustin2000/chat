@@ -2,12 +2,28 @@ import Express from 'express';
 
 import { RoomService } from 'src/modules/room/services/roomService';
 import { RoomRepository  as Repository } from 'src/modules/room/repositories/roomRepository';
+import { findSocketByUserID } from 'src/config/helpers';
 
 const router = Express.Router();
 
 router.get('/', (req, res, next) => {
     Repository.get()
         .then(rooms => res.json(rooms))
+        .catch(next);
+});
+
+router.get('/init', (req, res, next) => {
+    Repository.get(req.payload.user._id)
+        .then(rooms => {
+            rooms = rooms.map(room => { return room._id.toString()});
+            let socket = findSocketByUserID(req.payload.user._id);
+
+            if(socket) {
+                socket.join(rooms);
+            }
+
+            // console.log(io.sockets.adapter.rooms, 123);
+        })
         .catch(next);
 });
 

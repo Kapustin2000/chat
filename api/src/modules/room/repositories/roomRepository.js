@@ -2,7 +2,11 @@ import { Room } from 'src/modules/room/room.model';
 
 const RoomRepository = {
     async get(user_id) {
-        return  await Room.find({});
+        return  await Room.find({
+            members: {
+                $in: [user_id]
+            }
+        });
     },
 
     async find(id) {
