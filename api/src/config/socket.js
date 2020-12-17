@@ -9,9 +9,25 @@ class Socket {
         return this.socket.sockets;
     }
 
-    findByUserID(user_id) {
-        return Array.from(this.clients).filter(client => {
-            return names.includes(client[1].user_id.toString())
+    get rooms() {
+        return this.clients.adapter.rooms;
+    }
+
+    findRoom(room) {
+        if(this.rooms.has(room)) {
+            return this.rooms.get(room);
+        }
+
+        return "not found";
+    }
+
+    findRoomSize(room) {
+        return this.findRoom(room).size;
+    }
+
+    findByUserID(userID) {
+        return Array.from(this.clients.sockets).filter(client => {
+            return userID.includes(client[1].user_id.toString())
         }).map(client => client[0]);
     }
 }
