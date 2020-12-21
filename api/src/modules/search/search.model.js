@@ -6,6 +6,10 @@ const SearchSchema = new Mongoose.Schema({
    user_id: {
        type: String,
        required: true
+   },
+   pending: {
+       type: Boolean,
+       required: false
    }
 });
 

@@ -17,11 +17,11 @@ router.get('/', (req, res) => {
 
 router.use('/auth', AuthController);
 
-router.use('/',  [AuthMiddleware, SearchController]);
+router.use('/search',  [AuthMiddleware, SearchController]);
 
 router.use('/lobbies', [AuthMiddleware, LobbyController]);
 
-router.use('/user', [AuthMiddleware, (req, res, next) => {
+router.use('/user', [AuthMiddleware, async (req, res, next) => {
     res.json(req.payload.user);
 }]);
 

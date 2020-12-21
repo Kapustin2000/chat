@@ -14,7 +14,8 @@ router.get('/:lobby', (req, res, next) => {
 });
 
 
-router.post('/:lobby/accept', (req, res, next) => {
+router.post('/accept', (req, res, next) => {
+    Repository.find(req.body.token);
     let socket = io.findByUserID(req.payload.user._id);
 
     socket.join(req.params.lobby);

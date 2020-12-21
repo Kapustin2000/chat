@@ -17,9 +17,6 @@ const server = app.listen(HTTP_PORT, () => {
 
 global.io = new Socket(server);
 
-console.log(io.clients);
-
-
 app.use(BodyParser.json());
 modelBinding();
 

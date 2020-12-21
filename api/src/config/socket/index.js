@@ -1,4 +1,4 @@
-import { initSocket } from 'src/config/io';
+import { initSocket } from 'src/config/socket/io';
 
 class Socket {
     constructor(server) {
