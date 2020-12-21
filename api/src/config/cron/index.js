@@ -1,7 +1,7 @@
 import cron from 'node-cron';
-import Bcrypt from 'bcrypt';
+// import Bcrypt from 'bcrypt';
 import { GameFound } from './jobs';
-import { Search } from 'src/modules/search/search.model';
+// import { Search } from 'src/modules/search/search.model';
 
 const configCron = async () => {
     // cron.schedule('* * * * * *', async function() {
