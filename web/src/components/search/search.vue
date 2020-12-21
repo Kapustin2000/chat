@@ -5,6 +5,8 @@
 </template>
 
 <script>
+    import { mapActions } from 'vuex';
+
     export default {
         name: 'SearchComponent',
 
@@ -14,9 +16,7 @@
           }
         },
         methods: {
-            search() {
-                console.log(123);
-            }
+            ...mapActions('Game', ['search']),
         }
     }
 </script>
