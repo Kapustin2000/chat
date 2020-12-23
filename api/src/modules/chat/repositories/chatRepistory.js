@@ -1,13 +1,32 @@
 import { Chat } from 'src/modules/chat/chat.model';
 
 const ChatRepository = {
-    async get(user_id) {
+    async find(user_id) {
+        return  await Chat.findOne({
+            $or: [
+                {
+                    members: {
+                        $in: [user_id]
+                    },
+                    type: Chat.findGeneralTypeID()
+                },
+                {
+                    members: {
+                        $in: [user_id]
+                    },
+                    type: Chat.findAdminTypeID()
+                }
+            ]
+        });
+    },
+
+    async general() {
         return  await Chat.find({
             members: {
-                $in: [user_id]
-            }
+                lt: 5
+            },
         }).limit(1);
-    },
+    }
 };
 
 export { ChatRepository };

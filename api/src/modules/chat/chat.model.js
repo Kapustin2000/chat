@@ -39,6 +39,20 @@ ChatSchema.methods.privateMessageTo = async function (to_user_id) {
     });
 };
 
+ChatSchema.methods.findType = (search) => {
+    return types.filter(type => {
+        return type.name.toLowerCase() === search.toString()
+    });
+};
+
+ChatSchema.methods.findAdminTypeID = () => {
+    return ChatSchema.findType('admin').id
+};
+
+ChatSchema.methods.findGeneralTypeID = () => {
+    return ChatSchema.findType('admin').id
+};
+
 const Chat = Mongoose.model('Chat', ChatSchema);
 
 export { Chat };
