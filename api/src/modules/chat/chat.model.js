@@ -14,7 +14,7 @@ const types =  [
 const ChatSchema = new Mongoose.Schema({
     name: {
         type: String,
-        required: true
+        // required: true
     },
     members: {
        type: Array,
@@ -39,20 +39,22 @@ ChatSchema.methods.privateMessageTo = async function (to_user_id) {
     });
 };
 
-ChatSchema.methods.findType = (search) => {
+const Chat = Mongoose.model('Chat', ChatSchema);
+
+Chat.findType = (search) => {
     return types.filter(type => {
         return type.name.toLowerCase() === search.toString()
     });
 };
 
-ChatSchema.methods.findAdminTypeID = () => {
-    return ChatSchema.findType('admin').id
+Chat.findAdminTypeID = () => {
+    return Chat.findType('admin').id
 };
 
-ChatSchema.methods.findGeneralTypeID = () => {
-    return ChatSchema.findType('admin').id
+Chat.findGeneralTypeID = () => {
+    return Chat.findType('admin').id
 };
 
-const Chat = Mongoose.model('Chat', ChatSchema);
+
 
 export { Chat };

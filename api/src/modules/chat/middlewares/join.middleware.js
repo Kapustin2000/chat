@@ -1,10 +1,16 @@
 import { ChatRepository as Repository } from 'src/modules/chat/repositories/chatRepository';
 
 const JoinMiddleware = function (req, res, next) {
-    Repository.get(req.payload.user._id)
-        .then(chat => res.json(chat))
+    Repository.find(req.payload.user._id)
+        .then(chat => {
+            if(chat) {
+                res.json(chat)
+            }
+
+            next();
+        })
         .catch(err => {
-           next();
+            throw err;
         });
 };
 

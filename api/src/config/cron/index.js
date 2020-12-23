@@ -42,7 +42,7 @@ const configCron = async () => {
 
     // console.log(cron);
 
-    cron.schedule('* * * * * *', GameFound);
+    // cron.schedule('* * * * * *', GameFound);
 };
 
 export { configCron };

@@ -18,4 +18,4 @@ global.io = new Socket(server);
 
 app.use(BodyParser.json());
 
-app.use('api/', router);
+app.use('/api', router);
