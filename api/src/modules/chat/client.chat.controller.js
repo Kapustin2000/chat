@@ -1,6 +1,8 @@
 import Express from 'express';
 
 import { ChatService as Service } from 'src/modules/chat/services/chatService';
+import { MessageService } from 'src/modules/chat/services/messageService';
+
 import { ChatRepository as Repository } from 'src/modules/chat/repositories/chatRepository';
 import { JoinMiddleware } from 'src/modules/chat/middlewares/join.middleware';
 
@@ -12,11 +14,24 @@ router.get('/', (req, res, next) => {
         .catch(next)
 });
 
-router.get('/all', () => {
-    console.log('for admin');
+router.post('/', (req, res, next) => {
+    Repository.get(req.payload.user._id)
+        .then(chat => {
+            return MessageService.send({
+                 user_id: req.payload.user._id,
+                 chat_id: chat._id,
+                 text: req.body.text
+            }).then(message => {
+                return message.newMessageEvent();
+            }).catch(err => {
+                throw err;
+            });
+        })
+        .catch(next);
 });
 
-router.post('/join', [ JoinMiddleware, (req, res, next) => {
+
+router.post('/join', [JoinMiddleware, (req, res, next) => {
     Service
         .join({
             type: req.body.type,

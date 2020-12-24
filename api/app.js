@@ -3,7 +3,7 @@ import 'src/config/bootstrap';
 import Express from 'express';
 import BodyParser from  'body-parser';
 import cors from 'cors';
-import { router } from 'src/config/router'
+import { router } from 'src/config/router/index'
 import { Socket } from 'src/config/socket';
 
 const app = new Express();

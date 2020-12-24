@@ -1,7 +1,7 @@
 import { Chat } from 'src/modules/chat/chat.model';
 
 const ChatRepository = {
-    async find(user_id) {
+     async find(user_id) {
         return  await Chat.findOne({
             $or: [
                 {
