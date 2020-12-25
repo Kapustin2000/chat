@@ -4,10 +4,10 @@ const JoinMiddleware = function (req, res, next) {
     Repository.find(req.payload.user._id)
         .then(chat => {
             if(chat) {
-                res.json(chat)
+                return res.json(chat)
             }
 
-            next();
+            return next();
         })
         .catch(err => {
             throw err;

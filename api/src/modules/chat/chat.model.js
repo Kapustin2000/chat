@@ -16,10 +16,11 @@ const ChatSchema = new Mongoose.Schema({
         type: String,
         // required: true
     },
-    members: {
-       type: Array,
-       required: true
-   },
+    members: [{
+       type: Mongoose.Schema.Types.ObjectId,
+       ref: 'User',
+       required: true,
+    }],
     messages: {
         type: Array,
         // required: true

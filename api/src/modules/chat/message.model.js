@@ -6,24 +6,17 @@ const MessageSchema = new Mongoose.Schema({
         // required: true
     },
     chat_id: {
-        type: String,
-        // required: true
+        type: Mongoose.Schema.Types.ObjectId,
+        ref: 'Chat',
     },
     user_id: {
-        type: String,
-        // required: true
+        type: Mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     }
 });
 
 MessageSchema.methods.newMessageEvent = async function (chat) {
-        // io.sockets.sockets.forEach(item => {
-        //     if(item.user_id.toString() === to_user_id) {
-        //         io.to(item.id).emit('MESSAGE', this);
-        //         return false
-        //     }
-        // });
-        console.log(this);
-        io.socket.to(chat).to(this.chat_id).emit('MESSAGE', this);
+    io.socket.to(chat).to(this.chat_id).emit('MESSAGE', this);
 };
 
 const Message = Mongoose.model('Message', MessageSchema);

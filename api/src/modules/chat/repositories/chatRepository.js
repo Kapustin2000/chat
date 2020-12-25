@@ -17,7 +17,7 @@ const ChatRepository = {
                     type: Chat.findAdminTypeID()
                 }
             ]
-        });
+        }).populate('members', ['_id','name', 'email']);
     },
 
     async general() {

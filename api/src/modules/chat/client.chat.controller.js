@@ -37,7 +37,9 @@ router.post('/join', [JoinMiddleware, (req, res, next) => {
             type: req.body.type,
             user_id: req.payload.user._id
         })
-        .then(data => res.json(data))
+        .then(chat => {
+            res.json(chat)
+        })
         .catch(next)
 }]);
 
