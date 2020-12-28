@@ -26,9 +26,14 @@ class Socket {
     }
 
     findByUserID(userID) {
-        return Array.from(this.clients.sockets).filter(client => {
-            return userID.includes(client[1].user_id.toString())
-        }).map(client => client[0]);
+        let client;
+        this.clients.sockets.forEach((socket) => {
+            if(socket.user_id === userID) {
+                return client = socket;
+            }
+        });
+
+        return client;
     }
 }
 

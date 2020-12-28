@@ -11,7 +11,11 @@ const router = Express.Router();
 
 router.get('/', (req, res, next) => {
     Repository.get(req.payload.user._id)
-        .then(chat => res.json(chat))
+        .then(chat => {
+            io.socket.findByUserID(req.payload.user._id)
+                .join(chat._id);
+            res.json(chat)
+        })
         .catch(next)
 });
 
@@ -35,6 +39,8 @@ router.post('/join', [JoinMiddleware, (req, res, next) => {
             user_id: req.payload.user._id
         })
         .then(chat => {
+            io.socket.findByUserID(req.payload.user._id)
+                .join(chat._id);
             res.json(chat)
         })
         .catch(next)

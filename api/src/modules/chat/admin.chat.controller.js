@@ -14,7 +14,11 @@ router.get('/', (req, res, next) => {
 
 router.get('/:chat', (req, res, next) => {
     Repository.find(req.params.chat)
-        .then(chat => res.json(chat))
+        .then(chat => {
+            io.socket.findByUserID(req.payload.user._id)
+                .join(chat._id);
+            res.json(chat)
+        })
         .catch(next)
 });
 
