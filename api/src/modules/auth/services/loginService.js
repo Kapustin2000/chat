@@ -15,7 +15,7 @@ const LoginService = {
 
        let user = await User.findOne({
            email: email
-       });
+       }).populate('role');
 
        if(!user) {
            throw "Wrong credantionals";

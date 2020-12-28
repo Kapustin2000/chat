@@ -12,6 +12,11 @@ const UserSchema = new Mongoose.Schema({
        unique: true,
        required: true
    },
+   role: {
+       type: Mongoose.Schema.Types.ObjectId,
+       ref: 'Role',
+       required: true
+   },
    password: {
        type: String,
        required: true

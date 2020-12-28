@@ -16,6 +16,7 @@
 
 import { mapGetters, mapActions } from 'vuex';
 import SendComponent from '@/components/chat/send.vue';
+
 export default {
   name: 'chat',
   data() {
