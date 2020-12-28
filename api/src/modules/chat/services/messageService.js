@@ -1,6 +1,6 @@
 import { JoinValidation } from 'src/modules/chat/services/validator';
 import { Message } from 'src/modules/chat/message.model';
-
+import { encrypt } from 'src/config/encryption';
 
 const MessageService = {
     async send(data) {
@@ -14,7 +14,7 @@ const MessageService = {
        const { text, user_id, chat_id } = data;
 
        return await Message.create({
-           text: text,
+           text: encrypt(text),
            user_id: user_id,
            chat_id: chat_id
        });

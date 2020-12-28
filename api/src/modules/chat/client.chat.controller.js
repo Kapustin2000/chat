@@ -5,6 +5,7 @@ import { MessageService } from 'src/modules/chat/services/messageService';
 
 import { ChatRepository as Repository } from 'src/modules/chat/repositories/chatRepository';
 import { JoinMiddleware } from 'src/modules/chat/middlewares/join.middleware';
+import { HasChatMiddleware } from 'src/modules/chat/middlewares/has.chat.middleware';
 
 const router = Express.Router();
 
@@ -14,21 +15,17 @@ router.get('/', (req, res, next) => {
         .catch(next)
 });
 
-router.post('/', (req, res, next) => {
-    Repository.get(req.payload.user._id)
-        .then(chat => {
-            return MessageService.send({
-                 user_id: req.payload.user._id,
-                 chat_id: chat._id,
-                 text: req.body.text
-            }).then(message => {
-                return message.newMessageEvent();
-            }).catch(err => {
-                throw err;
-            });
-        })
-        .catch(next);
-});
+router.post('/:chat', [HasChatMiddleware, (req, res, next) => {
+        return MessageService.send({
+            user_id: req.payload.user._id,
+            chat_id: req.params.chat,
+            text: req.body.text
+        }).then(message => {
+            return message.newMessageEvent();
+        }).catch(err => {
+            throw err;
+        });
+}]);
 
 
 router.post('/join', [JoinMiddleware, (req, res, next) => {
