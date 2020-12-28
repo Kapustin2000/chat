@@ -1,15 +1,6 @@
 import Mongoose from 'mongoose';
+import { MessageRepository } from 'src/modules/chat/repositories/messageRepository';
 
-const types =  [
-    {
-        id: 1,
-        name: "Admin"
-    },
-    {
-        id: 2,
-        name: "General"
-    },
-];
 
 const ChatSchema = new Mongoose.Schema({
     name: {
@@ -25,10 +16,10 @@ const ChatSchema = new Mongoose.Schema({
         type: Array,
         // required: true
     },
-    type: {
-        type: Number,
-        min: 1
-    }
+    chat_id: {
+        type: Mongoose.Schema.Types.ObjectId,
+        ref: 'ChatType',
+    },
 });
 
 ChatSchema.methods.privateMessageTo = async function (to_user_id) {
@@ -41,21 +32,5 @@ ChatSchema.methods.privateMessageTo = async function (to_user_id) {
 };
 
 const Chat = Mongoose.model('Chat', ChatSchema);
-
-Chat.findType = (search) => {
-    return types.filter(type => {
-        return type.name.toLowerCase() === search.toString()
-    });
-};
-
-Chat.findAdminTypeID = () => {
-    return Chat.findType('admin').id
-};
-
-Chat.findGeneralTypeID = () => {
-    return Chat.findType('admin').id
-};
-
-
 
 export { Chat };

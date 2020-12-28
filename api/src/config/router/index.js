@@ -2,6 +2,7 @@ import Express from 'express';
 
 /** Controllers **/
 import { AuthController } from 'src/modules/auth/auth.controller';
+import { ChatTypeController } from 'src/modules/chat-type/chat.type.controller'
 
 /** Routers **/
 import { AdminRouter } from 'src/config/router/admin';
@@ -18,6 +19,7 @@ router.use('/auth', AuthController);
 router.use('/admin', [AuthMiddleware, AdminMiddleware, AdminRouter]);
 router.use('/client', [AuthMiddleware, ClientMiddleware, ClientRouter]);
 
+router.use('/types', ChatTypeController);
 
 router.use('/user', [AuthMiddleware, async (req, res, next) => {
     res.json(req.payload.user);

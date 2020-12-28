@@ -1,5 +1,5 @@
 import { JoinValidation } from 'src/modules/chat/services/validator';
-import { Message } from 'src/modules/chat/message.model';
+import { Message } from 'src/modules/chat/models/message.model';
 import { encrypt } from 'src/config/encryption';
 
 const MessageService = {

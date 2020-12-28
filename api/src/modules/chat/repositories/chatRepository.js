@@ -1,4 +1,4 @@
-import { Chat } from 'src/modules/chat/chat.model';
+import { Chat } from 'src/modules/chat/models/chat.model';
 
 const ChatRepository = {
      async find(user_id) {

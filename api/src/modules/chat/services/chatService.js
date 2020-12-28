@@ -1,5 +1,5 @@
 import { JoinValidation } from 'src/modules/chat/services/validator';
-import { Chat } from 'src/modules/chat/chat.model';
+import { Chat } from 'src/modules/chat/models/chat.model';
 import { ChatRepository as Repository } from 'src/modules/chat/repositories/chatRepository';
 
 const joinGeneral = (user_id) => {
