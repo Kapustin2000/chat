@@ -2,8 +2,8 @@ import Mongoose from 'mongoose';
 
 const MessageSchema = new Mongoose.Schema({
     text: {
-        type: String,
-        // required: true
+        type: Array,
+        required: true
     },
     chat_id: {
         type: Mongoose.Schema.Types.ObjectId,
@@ -16,12 +16,9 @@ const MessageSchema = new Mongoose.Schema({
 });
 
 MessageSchema.methods.newMessageEvent = async function (chat) {
-    io.socket.to(chat).to(this.chat_id).emit('MESSAGE', this);
+    return io.socket.to(chat).to(this.chat_id).emit('MESSAGE', this);
 };
 
 const Message = Mongoose.model('Message', MessageSchema);
-
-
-
 
 export { Message };

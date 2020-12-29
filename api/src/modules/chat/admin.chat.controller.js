@@ -17,6 +17,7 @@ router.get('/:chat', (req, res, next) => {
         .then(chat => {
             io.socket.findByUserID(req.payload.user._id)
                 .join(chat._id);
+            chat.loadMessages();
             res.json(chat)
         })
         .catch(next)
