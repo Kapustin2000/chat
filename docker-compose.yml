@@ -33,13 +33,13 @@ services:
       - ./data:/data/db
     ports:
          - 27017:27017
-  web:
-    restart: always
-    container_name: web
-    build:
-      context: ./web
-      dockerfile: Dockerfile
-    ports:
-        - 8000:3000
-    environment:
-      - PORT=8000
+#  web:
+#    restart: always
+#    container_name: web
+#    build:
+#      context: ./web
+#      dockerfile: Dockerfile
+#    ports:
+#        - 8000:3000
+#    environment:
+#      - PORT=8000

@@ -19,7 +19,7 @@ router.use('/auth', AuthController);
 router.use('/admin', [AuthMiddleware, AdminMiddleware, AdminRouter]);
 router.use('/client', [AuthMiddleware, ClientMiddleware, ClientRouter]);
 
-router.use('/types', ChatTypeController);
+router.use('/chat-types', ChatTypeController);
 
 router.use('/user', [AuthMiddleware, async (req, res, next) => {
     res.json(req.payload.user);

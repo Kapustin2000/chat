@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start:dev": "nodemon --es-module-specifier-resolution=node -L app.js",
-    "postinstall": "link-module-alias"
+    "postinstall": "link-module-alias",
+    "db:seed": "node src/seeders/index.js"
   },
   "author": "",
   "license": "ISC",
