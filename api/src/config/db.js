@@ -9,7 +9,7 @@ const mongooseOptions = {
 
 const connect = async function connect() {
     try {
-        await Mongoose.connect(
+        return await Mongoose.connect(
             DB_URL,
             mongooseOptions
         ).then(() => {

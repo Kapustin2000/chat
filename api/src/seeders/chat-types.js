@@ -1,14 +1,19 @@
 import { ChatType } from 'src/modules/chat-type/chat.type.model.js';
 import { connect } from 'src/config/db.js';
 
-connect().then(mongoose => {
+const ChatTypeSeeder = connect().then(() => {
     ChatType.create(
+        {
+            name: "Admin"
+        },
         {
             name: "General"
         }
     );
 
-    mongoose.disconnect();
+    console.log("Chat type seeder ok");
 }).catch(err => {
     console.log(err);
 });
+
+export { ChatTypeSeeder };
