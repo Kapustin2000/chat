@@ -29,7 +29,7 @@ const auth = async function (auth) {
 
     const user = await User.findOne({
         _id: decoded.id
-    });
+    }).populate('role');
 
     if(user) {
         return user;
