@@ -1,9 +1,9 @@
 const ClientMiddleware = function (req, res, next) {
-    if(req.payload.user.role.name.toLowerCase() === 'client') {
-       next();
+    if(!req.payload.user.role || req.payload.user.role.name.toLowerCase() === 'client') {
+       return next();
    }
 
-   next()
+   return next();
 };
 
 

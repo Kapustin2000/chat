@@ -1,5 +1,6 @@
 import { JoinValidation } from 'src/modules/chat/services/validator';
 import { Chat } from 'src/modules/chat/models/chat.model';
+import { ChatType } from 'src/modules/chat-type/chat.type.model';
 import { ChatRepository as Repository } from 'src/modules/chat/repositories/chatRepository';
 
 const joinGeneral = (user_id) => {
@@ -12,7 +13,7 @@ const joinGeneral = (user_id) => {
             )
         }).catch(() => {
             return Chat.create({
-                type: Chat.findGeneralTypeID(),
+                type: ChatType.findGeneralTypeID(),
                 members: [user_id]
             }).then(chat => {
                 return chat;
@@ -22,7 +23,7 @@ const joinGeneral = (user_id) => {
 
 const joinAdmin = (user_id) => {
     return Chat.create({
-        type: Chat.findAdminTypeID(),
+        type: ChatType.findAdminTypeID(),
         members: [user_id]
     }).then(chat => {
         return chat;
@@ -40,7 +41,7 @@ const ChatService = {
 
        const { type, user_id } = data;
 
-       if(type === Chat.findAdminTypeID()) {
+       if(type === (ChatType.findAdminTypeID())) {
            joinAdmin(user_id)
        }
 

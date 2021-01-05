@@ -1,4 +1,5 @@
 import { Chat } from 'src/modules/chat/models/chat.model';
+import { ChatType } from 'src/modules/chat-type/chat.type.model';
 
 const ChatRepository = {
      async find(user_id) {
@@ -8,13 +9,13 @@ const ChatRepository = {
                     members: {
                         $in: [user_id]
                     },
-                    type: Chat.findGeneralTypeID()
+                    // type: ChatType.findGeneralTypeID()
                 },
                 {
                     members: {
                         $in: [user_id]
                     },
-                    type: Chat.findAdminTypeID()
+                    // type: ChatType.findAdminTypeID()
                 }
             ]
         }).populate('members', ['_id','name', 'email']);

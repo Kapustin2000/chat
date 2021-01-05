@@ -25,6 +25,16 @@ class Socket {
         return this.findRoom(room).size;
     }
 
+    joinRoom(userID, roomId) {
+        let socket = this.findByUserID(userID);
+
+        if(socket) {
+            socket.join(roomId);
+        }
+
+        return socket;
+    }
+
     findByUserID(userID) {
         let client;
         this.clients.sockets.forEach((socket) => {

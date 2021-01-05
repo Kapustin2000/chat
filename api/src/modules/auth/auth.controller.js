@@ -8,14 +8,18 @@ const router = Express.Router();
 router.post('/reg', (req, res, next) => {
     RegService
         .reg(req.body)
-        .then(data => res.json(data))
+        .then(data => {
+            return res.json(data)
+        })
         .catch(next)
 });
 
 router.post('/login', (req, res, next) => {
     LoginService
         .login(req.body)
-        .then(data => res.json(data))
+        .then(data => {
+            return res.json(data)
+        })
         .catch(next)
 });
 

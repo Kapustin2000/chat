@@ -5,10 +5,12 @@ const AuthMiddleware = function (req, res, next) {
    auth(req.headers.authorization)
        .then(user => {
            req.payload = { user };
-           next();
+           return next();
        })
-       .catch(err => {
-           console.error(err);
+       .catch(() => {
+           return res.json({
+               message: "Unauthorized."
+           }, 401)
        });
 };
 

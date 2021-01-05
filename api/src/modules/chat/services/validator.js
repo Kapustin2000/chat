@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 const JoinValidation = (data) => {
     const schema = Joi.object({
-       type: Joi.number().required(),
+       type: Joi.string().required(),
        user_id: Joi.required()
     });
 

@@ -1,17 +1,17 @@
 import { ChatRepository as Repository } from 'src/modules/chat/repositories/chatRepository';
 
-const JoinMiddleware = function (req, res, next) {
-    Repository.find(req.payload.user._id)
+const JoinMiddleware = async (req, res, next) => {
+    return await Repository.find(req.payload.user._id)
         .then(chat => {
+            console.log(chat);
             if(chat) {
-                return res.json(chat)
+                return res.status(200).json(chat);
             }
 
             return next();
-        })
-        .catch(err => {
+    }).catch(err => {
             throw err;
-        });
+    });
 };
 
 

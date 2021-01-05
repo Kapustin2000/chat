@@ -7,7 +7,9 @@ const router = Express.Router();
 
 router.get('/', (req, res, next) => {
     Repository.all()
-        .then(types => res.json(types))
+        .then(types => {
+            return res.json(types)
+        })
         .catch(next)
 });
 

@@ -7,7 +7,9 @@ const router = Express.Router();
 
 router.get('/', (req, res, next) => {
     Repository.all()
-        .then(chats => res.json(chats))
+        .then(chats => {
+            return res.json(chats)
+        })
         .catch(next)
 });
 
@@ -18,7 +20,7 @@ router.get('/:chat', (req, res, next) => {
             io.socket.findByUserID(req.payload.user._id)
                 .join(chat._id);
             chat.loadMessages();
-            res.json(chat)
+            return res.json(chat)
         })
         .catch(next)
 });
@@ -38,10 +40,6 @@ router.post('/:chat', (req, res, next) => {
             });
         })
         .catch(next);
-});
-
-router.post('/:chat/join', (req, res, next) => {
-
 });
 
 export { router as ChatController };

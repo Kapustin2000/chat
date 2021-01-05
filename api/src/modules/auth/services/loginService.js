@@ -25,7 +25,7 @@ const LoginService = {
 
        if(validPass) {
            return {
-               token : await user.generateJWT()
+               access_token : await user.generateJWT()
            }
        } else {
            throw "Wrong credantionals";

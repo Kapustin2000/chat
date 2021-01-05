@@ -3,8 +3,8 @@ import { ChatRepository as Repository } from 'src/modules/chat/repositories/chat
 const HasChatMiddleware = function (req, res, next) {
     Repository.find(req.payload.user._id)
         .then(chat => {
-            if(chat._id === req.params.chat) {
-                next()
+            if(chat && chat._id === req.params.chat) {
+                return next()
             }
 
             throw 'You dont have this chat.';

@@ -12,15 +12,15 @@ const initSocket = (server) => {
         const { token } = socket.handshake.auth;
 
         if(!token) {
-            next(new Error("thou shall not pass"));
+            return next(new Error("thou shall not pass"));
         }
 
         auth(token)
             .then(user => {
                 socket.user_id = user._id;
-                next();
+                return next();
             }).catch(err => {
-            next(new Error(err));
+            return next(new Error(err));
         });
     });
 
