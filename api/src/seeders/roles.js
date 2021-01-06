@@ -9,9 +9,11 @@ const RolesSeeder  = connect().then(() => {
         {
             name: "Client"
         }
-    ]);
-
-    console.log("Roles seeder ok");
+    ]).then(data => {
+        console.log("Roles seeder ok");
+    }).catch(err => {
+        console.log(err);
+    });
 }).catch(err => {
     console.log(err);
 });

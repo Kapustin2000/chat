@@ -9,9 +9,11 @@ const ChatTypeSeeder = connect().then(() => {
         {
             name: "General"
         }
-    );
-
-    console.log("Chat type seeder ok");
+    ).then(data => {
+        console.log("Chat type seeder ok");
+    }).catch(err => {
+        console.log(err);
+    });
 }).catch(err => {
     console.log(err);
 });
