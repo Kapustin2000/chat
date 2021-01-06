@@ -10,5 +10,5 @@ COPY . .
 
 EXPOSE 8080
 
-CMD npm run postinstall && npm run start:dev
+CMD  npm run start:dev
 
