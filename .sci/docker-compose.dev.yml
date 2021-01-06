@@ -20,7 +20,7 @@ services:
     restart: always
     build: 
       context: .
-      dockerfile: ./api/Dockerfile
+      dockerfile: ../api/Dockerfile
     container_name: api
     environment:
       - HTTP_PORT=80
