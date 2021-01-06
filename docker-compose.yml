@@ -9,9 +9,12 @@ services:
     build:
       context: .
       dockerfile: ./docker/nginx/local.nginx.dockerfile
+    volumes:
+      - ../../.certbot:/var/www/certbot
+      - ../../ssl:/etc/nginx/certs
     ports:
 #      - 443:443
-      - 8080:80
+      - 80:80
 
   api:
     restart: always

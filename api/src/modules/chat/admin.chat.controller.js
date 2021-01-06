@@ -14,6 +14,8 @@ router.get('/', (req, res, next) => {
 });
 
 
+
+
 router.get('/:chat', (req, res, next) => {
     Repository.find(req.params.chat)
         .then(chat => {
