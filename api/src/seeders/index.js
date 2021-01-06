@@ -1,5 +1,8 @@
+import { connect } from 'src/config/db.js';
 import { ChatTypeSeeder } from 'src/seeders/chat-types.js';
 import { RolesSeeder } from 'src/seeders/roles.js';
+
+connect();
 
 process.on('exit', function(code) {
     if(code === 1) {
@@ -12,7 +15,8 @@ process.on('exit', function(code) {
 Promise.all([
    ChatTypeSeeder,
     RolesSeeder
-]).then(() => {
+]).then(data => {
+    console.log(data);
     process.exit(0);
 }).catch(err => {
     console.log(err);

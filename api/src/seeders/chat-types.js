@@ -1,7 +1,6 @@
 import { ChatType } from 'src/modules/chat-type/chat.type.model.js';
-import { connect } from 'src/config/db.js';
 
-const ChatTypeSeeder = connect().then(() => {
+const ChatTypeSeeder =
     ChatType.create(
         {
             name: "Admin"
@@ -9,13 +8,5 @@ const ChatTypeSeeder = connect().then(() => {
         {
             name: "General"
         }
-    ).then(data => {
-        console.log("Chat type seeder ok");
-    }).catch(err => {
-        console.log(err);
-    });
-}).catch(err => {
-    console.log(err);
-});
-
+    );
 export { ChatTypeSeeder };

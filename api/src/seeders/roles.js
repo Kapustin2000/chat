@@ -1,7 +1,6 @@
 import { Role } from 'src/modules/user/role.model.js';
-import { connect } from 'src/config/db.js';
 
-const RolesSeeder  = connect().then(() => {
+const RolesSeeder  =
     Role.create([
         {
             name: "Admin"
@@ -9,13 +8,6 @@ const RolesSeeder  = connect().then(() => {
         {
             name: "Client"
         }
-    ]).then(data => {
-        console.log("Roles seeder ok");
-    }).catch(err => {
-        console.log(err);
-    });
-}).catch(err => {
-    console.log(err);
-});
+    ]);
 
 export { RolesSeeder };
