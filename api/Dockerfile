@@ -6,8 +6,6 @@ COPY package*.json ./
 
 RUN npm install
 
-RUN npm i link-module-alias
-
 COPY . .
 
 EXPOSE 8080
