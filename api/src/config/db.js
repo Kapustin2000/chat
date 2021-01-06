@@ -1,6 +1,7 @@
 import Mongoose from 'mongoose';
 
 const DB_URL = process.env['DB_URL'];
+console.log(DB_URL);
 
 const mongooseOptions = {
     useNewUrlParser:    true,
