@@ -19,9 +19,11 @@ services:
   api:
     restart: always
     build: 
-      context: .
-      dockerfile: ../api/Dockerfile
+      context: ../api
+      dockerfile: Dockerfile
     container_name: api
+#    volumes:
+#      - ../api:/usr/src/app
     environment:
       - HTTP_PORT=80
       - TOKEN_SECRET=sadsa123za
