@@ -8,7 +8,7 @@ services:
     container_name: proxy
     build:
       context: .
-      dockerfile: ./docker/nginx/local.nginx.dockerfile
+      dockerfile: ./docker/nginx/dev.nginx.dockerfile
     volumes:
       - ../../.certbot:/var/www/certbot
       - ../../ssl:/etc/nginx/certs

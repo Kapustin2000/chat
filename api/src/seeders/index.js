@@ -16,7 +16,6 @@ Promise.all([
    ChatTypeSeeder,
     RolesSeeder
 ]).then(data => {
-    console.log(data);
     process.exit(0);
 }).catch(err => {
     console.log(err);
