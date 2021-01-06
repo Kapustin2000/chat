@@ -19,7 +19,7 @@ services:
   api:
     restart: always
     build: 
-      context: ./api
+      context: ../api
       dockerfile: Dockerfile
     container_name: api
     volumes:
