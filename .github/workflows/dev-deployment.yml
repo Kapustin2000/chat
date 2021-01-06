@@ -45,4 +45,4 @@ jobs:
           key: ${{ secrets.DEV_SSH_KEY }}
           command_timeout: 20m
           port: 22
-      #    script: sh .extcd/run.sh prod api.klik.shtl.cccontact@shuttle.software      
+          script: sh .extcd/run.sh prod api.chat.coelix.online kapustinomm@gmail.com
