@@ -10,13 +10,14 @@ const RegService = {
            throw error.details[0].message;
        }
 
-       const { name, email, password } = data;
+       const { name, email, role, password } = data;
 
        this.checkIfEmailIsBusy(email);
 
        let user = new User({
            email: email,
-           name: name
+           name: name,
+           role: role
        });
 
         await user.setPassword(password);
