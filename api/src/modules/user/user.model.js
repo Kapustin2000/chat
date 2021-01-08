@@ -2,6 +2,8 @@ import Mongoose from 'mongoose';
 import Bcrypt from 'bcrypt';
 import JWT from 'jsonwebtoken';
 
+import { Role } from 'src/modules/user/role.model';
+
 const UserSchema = new Mongoose.Schema({
    name: {
        type: String,
@@ -14,7 +16,7 @@ const UserSchema = new Mongoose.Schema({
    },
    role: {
        type: Mongoose.Schema.Types.ObjectId,
-       ref: 'Role',
+       ref: Role,
        required: true
    },
    password: {
