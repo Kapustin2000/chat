@@ -31,7 +31,9 @@ services:
   db:
     restart: always
     container_name: db
-    image: mongo:4
+    build:
+      context: .
+      dockerfile: ./docker/mongo/dev.mongo.dockerfile
     volumes:
       - ../../.data/data:/data/db
     ports:
