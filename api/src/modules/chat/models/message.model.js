@@ -16,8 +16,8 @@ const MessageSchema = new Mongoose.Schema({
 });
 
 MessageSchema.methods.newMessageEvent = async function () {
-    console.log(io.findRoom(this.chat_id), "from message");
-    return io.socket.to(this.chat_id).emit('MESSAGE', this);
+    console.log(io.findRoom(this.chat_id.toString()), "from message", io.findRoomSize(this.chat_id.toString()));
+    return io.socket.to(this.chat_id.toString()).emit('MESSAGE', this);
 };
 
 const Message = Mongoose.model('Message', MessageSchema);

@@ -29,7 +29,7 @@ class Socket {
         let socket = this.findByUserID(userID);
 
         if(socket) {
-            socket.join(roomId);
+            socket.join(roomId.toString());
         }
 
         return socket;
