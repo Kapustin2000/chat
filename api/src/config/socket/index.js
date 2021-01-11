@@ -29,7 +29,6 @@ class Socket {
         let socket = this.findByUserID(userID);
 
         if(socket) {
-            console.log(socket, 'found', roomId.toString());
             socket.join(roomId.toString());
         }
 
