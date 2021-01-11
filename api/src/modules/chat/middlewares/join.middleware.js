@@ -5,7 +5,7 @@ const JoinMiddleware = async (req, res, next) => {
         .then(chat => {
             if(chat) {
                 io.joinRoom(req.payload.user._id, chat._id);
-                chat.loadMessages().then(messages => {
+                return chat.loadMessages().then(messages => {
                     // console.log(messages);
                     chat.messages = messages;
 
