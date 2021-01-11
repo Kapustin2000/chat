@@ -26,7 +26,8 @@ const ChatSchema = new Mongoose.Schema({
 ChatSchema.methods.loadMessages = async function () {
     return await MessageRepository.all(this._id).then(messages => {
         return messages.map(message => {
-            return message.text;
+            // message.text = decrypt(message.text);
+            return message;
                 //decrypt(message.text);
         });
     })
