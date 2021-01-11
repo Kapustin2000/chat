@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/:chat', [
-    HasChatMiddleware,
+    // HasChatMiddleware,
     (req, res, next) => {
         return MessageService.send({
             user: req.payload.user._id,
