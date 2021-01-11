@@ -9,6 +9,23 @@ import { HasChatMiddleware } from 'src/modules/chat/middlewares/has.chat.middlew
 
 const router = Express.Router();
 
+
+router.get('/', [HasChatMiddleware, (req, res, next) => {
+    return Repository.find(req.payload.user._id).then(chat => {
+        return res.json(chat);
+    }).catch(err => {
+        throw err;
+    });
+}]);
+
+router.get('/', [HasChatMiddleware, (req, res, next) => {
+    return Repository.find(req.payload.user._id).then(message => {
+        return message.newMessageEvent();
+    }).catch(err => {
+        throw err;
+    });
+}]);
+
 router.post('/join',
     JoinMiddleware,
     (req, res) => {
