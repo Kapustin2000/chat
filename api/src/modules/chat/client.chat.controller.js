@@ -19,12 +19,18 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.get('/', [HasChatMiddleware, (req, res, next) => {
-    return Repository.find(req.payload.user._id).then(message => {
-        return message.newMessageEvent();
-    }).catch(err => {
-        throw err;
-    });
+router.post('/:chat', [
+    HasChatMiddleware,
+    (req, res, next) => {
+        return MessageService.send({
+            user: req.payload.user._id,
+            chat_id: req.params.chat,
+            text: req.body.text
+        }).then(message => {
+            return message.newMessageEvent();
+        }).catch(err => {
+            throw err;
+        });
 }]);
 
 router.post('/join',
@@ -44,19 +50,5 @@ router.post('/join',
         })
 }
 );
-
-router.post('/:chat', [
-    // HasChatMiddleware,
-    (req, res, next) => {
-        return MessageService.send({
-            user: req.payload.user._id,
-            chat_id: req.params.chat,
-            text: req.body.text
-        }).then(message => {
-            return message.newMessageEvent();
-        }).catch(err => {
-            throw err;
-        });
-}]);
 
 export { router as ChatController };
