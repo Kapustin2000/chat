@@ -31,6 +31,7 @@ class Socket {
         console.log(userID, roomId, "I am joining room " + roomId);
 
         if(socket) {
+            console.log(socket.id);
             socket.join(roomId);
         }
 
