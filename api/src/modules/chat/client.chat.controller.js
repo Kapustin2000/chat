@@ -33,7 +33,12 @@ router.post('/join',
         })
         .then(chat => {
             io.joinRoom(req.payload.user._id, chat._id);
-            return res.json(chat)
+            chat.loadMessages().then(messages => {
+                // console.log(messages);
+                chat.messages = messages;
+
+                return res.json(chat);
+            });
         })
         .catch(err => {
             return res.status(500).json(err)
