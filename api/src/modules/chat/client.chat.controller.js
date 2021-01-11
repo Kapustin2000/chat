@@ -12,7 +12,7 @@ const router = Express.Router();
 
 router.get('/', (req, res, next) => {
     return Repository.find(req.payload.user._id).then(chat => {
-        chat = chat.loadMessages();
+        chat.loadMessages();
         return res.json(chat);
     }).catch(err => {
         throw err;
