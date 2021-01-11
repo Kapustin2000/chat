@@ -28,7 +28,7 @@ class Socket {
     joinRoom(userID, roomId) {
         let socket = this.findByUserID(userID);
 
-        console.log(userID, roomId, "I am joining room " + roomId);
+        console.log(this.clients.sockets);
 
         if(socket) {
             console.log(socket.id);
