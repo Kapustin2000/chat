@@ -13,10 +13,10 @@ const ChatSchema = new Mongoose.Schema({
        ref: 'User',
        required: true,
     }],
-    // messages: {
-    //     type: Array,
-    //     // required: true
-    // },
+    messages: {
+        type: Array,
+        // required: true
+    },
     chat_id: {
         type: Mongoose.Schema.Types.ObjectId,
         ref: 'ChatType',
@@ -24,9 +24,10 @@ const ChatSchema = new Mongoose.Schema({
 });
 
 ChatSchema.methods.loadMessages = async function () {
-    return this.messages = await MessageRepository.all(this._id).then(messages => {
+    return await MessageRepository.all(this._id).then(messages => {
         return messages.map(message => {
-            return message.text = decrypt(message.text);
+            return message.text;
+                //decrypt(message.text);
         });
     })
 };

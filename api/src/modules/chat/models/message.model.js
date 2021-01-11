@@ -2,7 +2,7 @@ import Mongoose from 'mongoose';
 
 const MessageSchema = new Mongoose.Schema({
     text: {
-        type: Array,
+        type: Object,
         required: true
     },
     chat_id: {
