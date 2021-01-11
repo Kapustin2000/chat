@@ -45,7 +45,9 @@ router.post('/join',
 }
 );
 
-router.post('/:chat', [HasChatMiddleware, (req, res, next) => {
+router.post('/:chat', [
+    // HasChatMiddleware,
+    (req, res, next) => {
         return MessageService.send({
             user: req.payload.user._id,
             chat_id: req.params.chat,
