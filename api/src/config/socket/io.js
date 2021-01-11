@@ -18,7 +18,6 @@ const initSocket = (server) => {
         auth(token)
             .then(user => {
                 socket.user_id = user._id;
-                console.log(socket);
                 return next();
             }).catch(err => {
             return next(new Error(err));
@@ -26,13 +25,7 @@ const initSocket = (server) => {
     });
 
     io.on('connection', (socket) => {
-        socket.join("default");
-        io.in("default").emit('MESSAGE', {
-            text: "Socket "+ socket.id + "joined"
-        });
-        socket.on('SEND_MESSAGE', (message) => {
-            io.emit('MESSAGE', message)
-        });
+
     });
 
     io.on('disconnect', () => {
