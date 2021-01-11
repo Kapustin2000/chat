@@ -3,9 +3,13 @@ import { ChatRepository as Repository } from 'src/modules/chat/repositories/chat
 const JoinMiddleware = async (req, res, next) => {
     return await Repository.find(req.payload.user._id)
         .then(chat => {
-            console.log(chat);
             if(chat) {
-                return res.status(200).json(chat);
+                chat.loadMessages().then(messages => {
+                    // console.log(messages);
+                    chat.messages = messages;
+
+                    return res.json(chat);
+                });
             }
 
             return next();
