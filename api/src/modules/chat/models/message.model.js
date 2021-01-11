@@ -15,8 +15,7 @@ const MessageSchema = new Mongoose.Schema({
     }
 });
 
-MessageSchema.methods.newMessageEvent = async () => {
-    console.log(this);
+MessageSchema.methods.newMessageEvent = async function () {
     return io.socket.to(this.chat_id).emit('MESSAGE', this);
 };
 
