@@ -29,7 +29,7 @@ class Socket {
         let socket = this.findByUserID(userID);
 
         if(socket) {
-            console.log(socket.id);
+            console.log(socket.id, " I AM FOUND");
             socket.join(roomId);
         }
 
@@ -39,8 +39,7 @@ class Socket {
     findByUserID(userID) {
         let client;
         this.clients.sockets.forEach((socket) => {
-            console.log(socket.user_id, userID, socket.user_id === userID, socket.user_id == userID);
-            if(socket.user_id === userID) {
+            if(socket.user_id.toString() === userID.toString()) {
                 return client = socket;
             }
         });
