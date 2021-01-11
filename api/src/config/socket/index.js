@@ -26,7 +26,6 @@ class Socket {
     }
 
     joinRoom(userID, roomId) {
-        console.log(this.clients, "clieeentsss");
         let socket = this.findByUserID(userID);
 
         if(socket) {
@@ -40,6 +39,7 @@ class Socket {
     findByUserID(userID) {
         let client;
         this.clients.sockets.forEach((socket) => {
+            console.log(socket.user_id, userID, socket.user_id === userID, socket.user_id == userID);
             if(socket.user_id === userID) {
                 return client = socket;
             }
