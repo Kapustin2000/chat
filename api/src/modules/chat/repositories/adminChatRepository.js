@@ -8,7 +8,7 @@ const ChatRepository = {
     async find(chat_id) {
         return  await Chat.findOne({
             _id: chat_id
-        });
+        }).populate('members', ['_id','name', 'email']);
     }
 };
 
