@@ -18,14 +18,16 @@ router.get('/', (req, res, next) => {
 
 
 router.get('/:chat', (req, res, next) => {
-    Repository.find(req.params.chat)
-        .then(chat => {
-            io.socket.findByUserID(req.payload.user._id)
-                .join(chat._id);
-            chat.loadMessages();
-            return res.json(chat)
-        })
-        .catch(next)
+    return Repository.find(req.payload.user._id).then(chat => {
+        io.joinRoom(req.payload.user._id, chat._id);
+        chat.loadMessages().then(messages => {
+            chat.messages = messages;
+
+            return res.json(chat);
+        });
+    }).catch(err => {
+        throw err;
+    });
 });
 
 
