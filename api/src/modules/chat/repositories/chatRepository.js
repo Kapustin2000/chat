@@ -4,29 +4,33 @@ import { ChatType } from 'src/modules/chat-type/chat.type.model';
 const ChatRepository = {
      async find(user_id) {
         return  await Chat.findOne({
-            $or: [
-                {
-                    members: {
-                        $in: [user_id]
-                    },
-                    // type: ChatType.findGeneralTypeID()
-                },
-                {
-                    members: {
-                        $in: [user_id]
-                    },
-                    // type: ChatType.findAdminTypeID()
-                }
-            ]
+            members: {
+                $in: [user_id]
+            },
+            // $or: [
+            //     {
+            //         members: {
+            //             $in: [user_id]
+            //         },
+            //         type: ChatType.findGeneralTypeID()
+            //     },
+            //     {
+            //         members: {
+            //             $in: [user_id]
+            //         },
+            //         type: ChatType.findAdminTypeID()
+            //     }
+            // ]
         }).populate('members', ['_id','name', 'email']);
     },
 
     async general() {
-        return  await Chat.find({
+        return  await Chat.findOne({
             members: {
                 lt: 5
             },
-        }).limit(1);
+            type: ChatType.findGeneralTypeID()
+        });
     }
 };
 

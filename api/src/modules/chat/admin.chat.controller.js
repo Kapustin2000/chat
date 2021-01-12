@@ -1,7 +1,7 @@
 import Express from 'express';
 
 import { MessageService } from 'src/modules/chat/services/messageService';
-import { ChatRepository as Repository } from 'src/modules/chat/repositories/chatRepository';
+import { ChatRepository as Repository } from 'src/modules/chat/repositories/adminChatRepository';
 import { decrypt } from 'src/config/encryption';
 
 const router = Express.Router();
