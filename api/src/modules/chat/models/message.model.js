@@ -1,4 +1,5 @@
 import Mongoose from 'mongoose';
+import { decrypt } from 'src/config/encryption';
 
 const MessageSchema = new Mongoose.Schema({
     text: {
@@ -16,6 +17,7 @@ const MessageSchema = new Mongoose.Schema({
 });
 
 MessageSchema.methods.newMessageEvent = async function () {
+    this.text = decrypt(this.text);
     return io.socket.to(this.chat_id.toString()).emit('MESSAGE', this);
 };
 

@@ -41,7 +41,7 @@ router.post('/:chat', (req, res, next) => {
             }).then(message => {
                 message.newMessageEvent();
                 message.text = decrypt(message.text);
-                return message;
+                return res.json(message);
             }).catch(err => {
                 throw err;
             });
