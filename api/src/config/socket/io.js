@@ -10,6 +10,7 @@ const initSocket = (server) => {
 
     io.use((socket, next) => {
         const { token } = socket.handshake.auth;
+        console.log(socket, "it is initiation");
 
         if(!token) {
             return next(new Error("thou shall not pass"));
@@ -18,7 +19,7 @@ const initSocket = (server) => {
         auth(token)
             .then(user => {
                 socket.user_id = user._id.toString();
-                console.log(socket.user_id);
+                console.log(socket.user_id, "it is authhh");
                 return next();
             }).catch(err => {
             return next(new Error(err));
