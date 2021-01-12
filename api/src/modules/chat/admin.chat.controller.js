@@ -1,7 +1,7 @@
 import Express from 'express';
 
 import { MessageService } from 'src/modules/chat/services/messageService';
-import { ChatRepository as Repository } from 'src/modules/chat/repositories/adminChatRepository';
+import { AdminChatRepository as Repository } from 'src/modules/chat/repositories/adminChatRepository';
 import { decrypt } from 'src/config/encryption';
 
 const router = Express.Router();
@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
 
 
 router.get('/:chat', (req, res, next) => {
-    return Repository.find(req.payload.user._id).then(chat => {
+    return Repository.find(req.params.chat).then(chat => {
         io.joinRoom(req.payload.user._id, chat._id);
         chat.loadMessages().then(messages => {
             chat.messages = messages;

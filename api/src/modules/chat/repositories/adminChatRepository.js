@@ -12,4 +12,4 @@ const ChatRepository = {
     }
 };
 
-export { ChatRepository };
+export { ChatRepository as AdminChatRepository};
