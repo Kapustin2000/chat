@@ -3,7 +3,7 @@ import { ChatRepository as Repository } from 'src/modules/chat/repositories/chat
 const HasChatMiddleware = function (req, res, next) {
     return Repository.find(req.payload.user._id)
         .then(chat => {
-            if(chat && chat._id === req.params.chat) {
+            if(chat && chat._id.toString() === req.params.chat.toString()) {
                 return next()
             }
 
