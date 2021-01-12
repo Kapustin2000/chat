@@ -2,6 +2,7 @@ import Express from 'express';
 
 import { MessageService } from 'src/modules/chat/services/messageService';
 import { ChatRepository as Repository } from 'src/modules/chat/repositories/chatRepository';
+import { decrypt } from 'src/config/encryption';
 
 const router = Express.Router();
 
@@ -36,7 +37,9 @@ router.post('/:chat', (req, res, next) => {
                 chat_id: chat._id,
                 text: req.body.text
             }).then(message => {
-                return message.newMessageEvent();
+                message.newMessageEvent();
+                message.text = decrypt(message.text);
+                return message;
             }).catch(err => {
                 throw err;
             });

@@ -6,6 +6,8 @@ import { MessageService } from 'src/modules/chat/services/messageService';
 import { ChatRepository as Repository } from 'src/modules/chat/repositories/chatRepository';
 import { JoinMiddleware } from 'src/modules/chat/middlewares/join.middleware';
 import { HasChatMiddleware } from 'src/modules/chat/middlewares/has.chat.middleware';
+import { decrypt } from 'src/config/encryption';
+
 
 const router = Express.Router();
 
@@ -59,6 +61,7 @@ router.post('/:chat', [
             text: req.body.text
         }).then(message => {
             message.newMessageEvent();
+            message.text = decrypt(message.text);
             return res.json(message);
         }).catch(err => {
             throw err;
