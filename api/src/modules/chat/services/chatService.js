@@ -3,7 +3,7 @@ import { Chat } from 'src/modules/chat/models/chat.model';
 import { ChatType } from 'src/modules/chat-type/chat.type.model';
 import { ChatRepository as Repository } from 'src/modules/chat/repositories/chatRepository';
 
-const joinGeneral = (user_id) => {
+const joinGeneral = async (user_id) => {
     return Repository.general()
         .then(chat => {
             return chat.update(
@@ -11,9 +11,9 @@ const joinGeneral = (user_id) => {
                     $addToSet: { members: [ user_id ]}
                 }
             )
-        }).catch(() => {
+        }).catch(async () => {
             return Chat.create({
-                type: ChatType.findGeneralTypeID(),
+                type: await ChatType.findGeneralTypeID(),
                 members: [user_id]
             }).then(chat => {
                 return chat;
@@ -21,9 +21,9 @@ const joinGeneral = (user_id) => {
         });
 };
 
-const joinAdmin = (user_id) => {
+const joinAdmin = async (user_id) => {
     return Chat.create({
-        type: ChatType.findAdminTypeID(),
+        type: await ChatType.findAdminTypeID(),
         members: [user_id]
     }).then(chat => {
         return chat;
@@ -41,8 +41,8 @@ const ChatService = {
 
        const { type, user_id } = data;
 
-       if(type === (ChatType.findAdminTypeID())) {
-           joinAdmin(user_id)
+       if(type.toString() === (await ChatType.findAdminTypeID()).toString()) {
+           return joinAdmin(user_id)
        }
 
        return joinGeneral(user_id);

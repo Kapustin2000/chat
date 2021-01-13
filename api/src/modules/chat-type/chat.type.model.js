@@ -9,16 +9,20 @@ const ChatTypeSchema = new Mongoose.Schema({
 
 const ChatType = Mongoose.model('ChatType', ChatTypeSchema);
 
-ChatType.findAdminTypeID = async () => {
-    return await ChatType.findOne({
+ChatType.findAdminTypeID = () => {
+    return ChatType.findOne({
         name: "Admin"
-    })._id;
+    }).then(type => {
+        return type._id;
+    });
 };
 
-ChatType.findGeneralTypeID = async () => {
-    return await ChatType.findOne({
+ChatType.findGeneralTypeID = () => {
+    return ChatType.findOne({
         name: "General"
-    })._id;
+    }).then(type => {
+        return type._id;
+    });
 };
 
 export { ChatType };
