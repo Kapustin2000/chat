@@ -35,7 +35,7 @@ router.post('/:chat', (req, res, next) => {
     Repository.find(req.params.chat)
         .then(chat => {
             return MessageService.send({
-                user: req.payload.user._id,
+                user_id: req.payload.user._id,
                 chat_id: chat._id,
                 text: req.body.text
             }).then(message => {

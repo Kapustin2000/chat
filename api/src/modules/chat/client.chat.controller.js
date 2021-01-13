@@ -56,7 +56,7 @@ router.post('/:chat', [
     HasChatMiddleware,
     (req, res, next) => {
         return MessageService.send({
-            user: req.payload.user._id,
+            user_id: req.payload.user._id,
             chat_id: req.params.chat,
             text: req.body.text
         }).then(message => {
