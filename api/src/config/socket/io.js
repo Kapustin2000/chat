@@ -18,7 +18,6 @@ const initSocket = (server) => {
         auth(token)
             .then(user => {
                 socket.user_id = user._id.toString();
-                console.log(socket.id, socket.user_id, "it is authhh");
                 return next();
             }).catch(err => {
             return next(new Error(err));

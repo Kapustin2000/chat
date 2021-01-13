@@ -26,8 +26,8 @@ const ChatRepository = {
 
     async general() {
         return  await Chat.findOne({
-            members: {
-                lt: 5
+            $expr: {
+                $lt:[{$size:"$members"}, 5]
             },
             type: await ChatType.findGeneralTypeID()
         });
