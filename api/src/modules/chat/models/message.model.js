@@ -10,7 +10,7 @@ const MessageSchema = new Mongoose.Schema({
         type: Mongoose.Schema.Types.ObjectId,
         ref: 'Chat',
     },
-    user: {
+    user_id: {
         type: Mongoose.Schema.Types.ObjectId,
         ref: 'User',
     }
