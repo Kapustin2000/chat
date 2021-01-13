@@ -17,10 +17,10 @@ const ChatSchema = new Mongoose.Schema({
         type: Array,
         // required: true
     },
-    type: [{
+    type: {
         type: Mongoose.Schema.Types.ObjectId,
         ref: 'ChatType',
-    }],
+    },
 });
 
 ChatSchema.methods.loadMessages = async function () {
