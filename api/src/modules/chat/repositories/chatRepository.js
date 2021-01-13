@@ -29,7 +29,7 @@ const ChatRepository = {
             members: {
                 lt: 5
             },
-            type: ChatType.findGeneralTypeID()
+            type: await ChatType.findGeneralTypeID()
         });
     }
 };
