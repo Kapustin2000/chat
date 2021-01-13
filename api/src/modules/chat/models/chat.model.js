@@ -17,7 +17,7 @@ const ChatSchema = new Mongoose.Schema({
         type: Array,
         // required: true
     },
-    chat_id: {
+    type: {
         type: Mongoose.Schema.Types.ObjectId,
         ref: 'ChatType',
     },
