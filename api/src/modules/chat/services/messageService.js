@@ -15,9 +15,9 @@ const MessageService = {
 
        return await Message.create({
            text: encrypt(text),
-           user_id: user_id,
+           user: user_id,
            chat_id: chat_id
-       });
+       }).then(message => message.populate('user', ['_id', 'name', 'email']).execPopulate());
     },
 };
 

@@ -2,7 +2,7 @@ import { Chat } from 'src/modules/chat/models/chat.model';
 
 const ChatRepository = {
     async all() {
-        return  await Chat.find();
+        return  await Chat.find().populate('members', ['_id','name', 'email']);
     },
 
     async find(chat_id) {
