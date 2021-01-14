@@ -14,13 +14,18 @@ const router = Express.Router();
 
 router.get('/', (req, res, next) => {
     return Repository.find(req.payload.user._id).then(chat => {
-        io.joinRoom(req.payload.user._id, chat._id);
-        chat.loadMessages().then(messages => {
-            // console.log(messages);
-            chat.messages = messages;
+        console.log(chat);
+        if(chat) {
+            io.joinRoom(req.payload.user._id, chat._id);
+            chat.loadMessages().then(messages => {
+                // console.log(messages);
+                chat.messages = messages;
 
-            return res.json(chat);
-        });
+                return res.json(chat);
+            });
+        }
+
+        res.status(500).json({message: "chat is not found"});
     }).catch(err => {
         throw err;
     });
