@@ -15,9 +15,9 @@ const joinGeneral = async (user_id) => {
             ).then(chat => {
                 return chat;
             });
-        }).catch(async () => {
+        }).catch(() => {
             return Chat.create({
-                type: await ChatType.findGeneralTypeID(),
+                type: ChatType.findGeneralTypeID().then(type => { return type; }),
                 members: [
                     user_id
                 ]
@@ -27,12 +27,12 @@ const joinGeneral = async (user_id) => {
         });
 };
 
-const joinAdmin = async (user_id) => {
+const joinAdmin = (user_id) => {
     return Chat.create({
-        type: await ChatType.findAdminTypeID(),
+        type:  ChatType.findAdminTypeID().then(type => { return type; }),
         members: [
             user_id,
-            await UserRepository.admin().then(user => { return user._id })
+            UserRepository.admin().then(user => { return user._id })
         ]
     }).then(chat => {
         return chat;
