@@ -26,6 +26,7 @@ const joinGeneral = async (user_id) => {
                 ]
             }).then(chat => {
                 let newChat = chat.populate('members', ['_id','name', 'email']).execPopulate();
+                console.log(newChat);
                 io.socket.to("admin").emit("NEW_CHAT", newChat);
                 return newChat;
             });
@@ -41,6 +42,7 @@ const joinAdmin = async (user_id) => {
         ]
     }).then(chat => {
         let newChat = chat.populate('members', ['_id','name', 'email']).execPopulate();
+        console.log(newChat);
         io.socket.to("admin").emit("NEW_CHAT", newChat);
         return newChat;
     });
