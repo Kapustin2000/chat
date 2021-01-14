@@ -26,7 +26,8 @@ router.post('/join',
                 chat.messages = messages;
 
                 return res.json(chat);
-            }).catch(() => {
+            }).catch(err => {
+                console.log(err);
                 return res.json(chat);
             });
         })
