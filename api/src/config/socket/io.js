@@ -1,5 +1,6 @@
 import { Server  as SocketIO } from 'socket.io';
 import { auth } from 'src/modules/auth/middlewares/auth.middleware';
+import { Role } from 'src/modules/user/role.model';
 
 const initSocket = (server) => {
     const io = new SocketIO(server, {
@@ -18,6 +19,12 @@ const initSocket = (server) => {
         auth(token)
             .then(user => {
                 socket.user_id = user._id.toString();
+                console.log(user.role,
+                    user.role === Role.findOne({name: "Admin"}).then(role => { return role._id }),
+                    Role.findOne({name: "Admin"}).then(role => { return role._id }));
+                if(user.role === Role.findOne({name: "Admin"}).then(role => { return role._id })) {
+                    socket.join("admin");
+                }
                 return next();
             }).catch(err => {
             return next(new Error(err));
