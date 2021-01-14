@@ -8,7 +8,7 @@ import { UserRepository } from 'src/modules/user/repositories/userRepository';
 const joinGeneral = async (user_id) => {
     return Repository.general()
         .then(chat => {
-            return chat.update(
+            return chat.updateOne(
                 {
                     $addToSet: { members: [ user_id ]}
                 }
