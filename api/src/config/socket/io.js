@@ -18,7 +18,6 @@ const initSocket = (server) => {
         auth(token)
             .then(user => {
                 socket.user_id = user._id.toString();
-                console.log(user.role.name === "Admin");
                 if(user.role.name === "Admin") {
                     socket.join("admin");
                 }
