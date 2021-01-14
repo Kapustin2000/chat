@@ -20,7 +20,6 @@ router.post('/join',
             user_id: req.payload.user._id
         })
         .then(chat => {
-            console.log(chat, 123);
             io.joinRoom(req.payload.user._id, chat._id);
             return chat.loadMessages().then(messages => {
                 // console.log(messages);
