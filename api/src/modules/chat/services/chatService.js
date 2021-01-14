@@ -42,7 +42,6 @@ const joinAdmin = async (user_id) => {
         ]
     }).then(chat => {
         return chat.populate('members', ['_id','name', 'email']).execPopulate().then(chat => {
-            console.log(chat);
             io.socket.to("admin").emit("NEW_CHAT", chat);
             return chat;
         });
