@@ -14,7 +14,9 @@ const joinGeneral = async (user_id) => {
                     $addToSet: { members: [ user_id ]}
                 }
             ).then(() => {
-                return Chat.findOne({_id: chatId}).then(chat => { return chat; })
+                return Chat.findOne({_id: chatId})
+                    .populate('members', ['_id','name', 'email'])
+                    .then(chat => { return chat; })
             })
         }).catch(async () => {
             return Chat.create({
@@ -23,7 +25,7 @@ const joinGeneral = async (user_id) => {
                     user_id
                 ]
             }).then(chat => {
-                return chat;
+                return chat.populate('members', ['_id','name', 'email']).execPopulate()
             });
         });
 };
