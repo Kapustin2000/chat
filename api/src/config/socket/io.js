@@ -19,10 +19,8 @@ const initSocket = (server) => {
         auth(token)
             .then(user => {
                 socket.user_id = user._id.toString();
-                console.log(user.role,
-                    user.role === Role.findOne({name: "Admin"}).then(role => { return role._id }),
-                    Role.findOne({name: "Admin"}).then(role => { return role._id }));
-                if(user.role === Role.findOne({name: "Admin"}).then(role => { return role._id })) {
+                console.log(user.role.name === "Admin");
+                if(user.role.name === "Admin") {
                     socket.join("admin");
                 }
                 return next();
