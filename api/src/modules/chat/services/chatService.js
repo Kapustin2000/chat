@@ -38,7 +38,7 @@ const joinAdmin = async (user_id) => {
             await UserRepository.admin().then(user => { return user._id })
         ]
     }).then(chat => {
-        return chat;
+        return chat.populate('members', ['_id','name', 'email']).execPopulate();
     });
 };
 
