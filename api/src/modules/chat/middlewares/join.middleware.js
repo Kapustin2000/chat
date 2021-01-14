@@ -15,6 +15,7 @@ const JoinMiddleware = async (req, res, next) => {
 
             return next();
     }).catch(err => {
+        console.log(err);
             throw err;
     });
 };
