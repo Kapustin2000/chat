@@ -49,6 +49,7 @@ router.get('/', (req, res, next) => {
                 return res.json(chat);
             });
         }
+        return res.json({}).status(500);
     }).catch(err => {
         console.log(err);
         return res.json({}).status(500);
