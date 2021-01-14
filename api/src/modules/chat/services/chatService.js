@@ -12,7 +12,9 @@ const joinGeneral = async (user_id) => {
                 {
                     $addToSet: { members: [ user_id ]}
                 }
-            )
+            ).then(chat => {
+                return chat;
+            });
         }).catch(async () => {
             return Chat.create({
                 type: await ChatType.findGeneralTypeID(),
