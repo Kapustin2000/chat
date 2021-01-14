@@ -1,6 +1,5 @@
 import { Server  as SocketIO } from 'socket.io';
 import { auth } from 'src/modules/auth/middlewares/auth.middleware';
-import { Role } from 'src/modules/user/role.model';
 
 const initSocket = (server) => {
     const io = new SocketIO(server, {
