@@ -50,7 +50,8 @@ router.get('/', (req, res, next) => {
             });
         }
     }).catch(err => {
-        throw err;
+        console.log(err);
+        return res.json({}).status(500);
     });
 });
 
