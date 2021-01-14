@@ -11,26 +11,6 @@ import { decrypt } from 'src/config/encryption';
 
 const router = Express.Router();
 
-
-router.get('/', (req, res, next) => {
-    return Repository.find(req.payload.user._id).then(chat => {
-        console.log(chat);
-        if(chat) {
-            io.joinRoom(req.payload.user._id, chat._id);
-            chat.loadMessages().then(messages => {
-                // console.log(messages);
-                chat.messages = messages;
-
-                return res.json(chat);
-            });
-        }
-
-        res.status(500).json({message: "chat is not found"});
-    }).catch(err => {
-        throw err;
-    });
-});
-
 router.post('/join',
     JoinMiddleware,
     (req, res) => {
@@ -56,6 +36,21 @@ router.post('/join',
 }
 );
 
+router.get('/', (req, res, next) => {
+    return Repository.find(req.payload.user._id).then(chat => {
+        if(chat) {
+            io.joinRoom(req.payload.user._id, chat._id);
+            chat.loadMessages().then(messages => {
+                // console.log(messages);
+                chat.messages = messages;
+
+                return res.json(chat);
+            });
+        }
+    }).catch(err => {
+        throw err;
+    });
+});
 
 router.post('/:chat', [
     HasChatMiddleware,
