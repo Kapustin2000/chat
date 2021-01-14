@@ -23,6 +23,7 @@ router.post('/join',
             io.joinRoom(req.payload.user._id, chat._id);
             io.socket.to(chat._id.toString()).emit('NEW_USER', {
                 _id: req.payload.user._id,
+                chat_id: chat._id,
                 email: req.payload.user.email,
                 name: req.payload.user.name
             });
