@@ -25,10 +25,10 @@ const joinGeneral = async (user_id) => {
                     user_id
                 ]
             }).then(chat => {
-                let newChat = chat.populate('members', ['_id','name', 'email']).execPopulate();
-                console.log(newChat);
-                io.socket.to("admin").emit("NEW_CHAT", newChat);
-                return newChat;
+                return chat.populate('members', ['_id','name', 'email']).execPopulate().then(chat => {
+                    io.socket.to("admin").emit("NEW_CHAT", chat);
+                    return chat;
+                });
             });
         });
 };
@@ -41,10 +41,11 @@ const joinAdmin = async (user_id) => {
             await UserRepository.admin().then(user => { return user._id })
         ]
     }).then(chat => {
-        let newChat = chat.populate('members', ['_id','name', 'email']).execPopulate();
-        console.log(newChat);
-        io.socket.to("admin").emit("NEW_CHAT", newChat);
-        return newChat;
+        return chat.populate('members', ['_id','name', 'email']).execPopulate().then(chat => {
+            console.log(chat);
+            io.socket.to("admin").emit("NEW_CHAT", chat);
+            return chat;
+        });
     });
 };
 
