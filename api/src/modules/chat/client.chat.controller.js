@@ -42,7 +42,7 @@ router.get('/', (req, res, next) => {
     return Repository.find(req.payload.user._id).then(chat => {
         if(chat) {
             io.joinRoom(req.payload.user._id, chat._id);
-            chat.loadMessages().then(messages => {
+            return chat.loadMessages().then(messages => {
                 // console.log(messages);
                 chat.messages = messages;
 
