@@ -8,12 +8,13 @@ import { UserRepository } from 'src/modules/user/repositories/userRepository';
 const joinGeneral = async (user_id) => {
     return Repository.general()
         .then(chat => {
+            let chatId = chat._id;
             return chat.updateOne(
                 {
                     $addToSet: { members: [ user_id ]}
                 }
-            ).then(chat => {
-                return chat;
+            ).then(() => {
+                return Chat.findOne({_id: chatId}).then(chat => { return chat;});
             });
         }).catch(() => {
             return Chat.create({
