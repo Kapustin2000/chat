@@ -18,7 +18,6 @@ router.get('/', (req, res, next) => {
 
 
 router.get('/:chat', (req, res, next) => {
-    console.log(req.params.chat)
     return Repository.find(req.params.chat).then(chat => {
         console.log(chat);
         io.joinRoom(req.payload.user._id, chat._id);
