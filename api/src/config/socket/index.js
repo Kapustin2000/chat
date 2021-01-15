@@ -26,24 +26,11 @@ class Socket {
     }
 
     joinRoom(userID, roomId) {
-        let socket = this.findByUserID(userID);
-
-        if(socket) {
-            socket.join(roomId.toString());
-        }
-
-        return socket;
-    }
-
-    findByUserID(userID) {
-        let client;
         this.clients.sockets.forEach((socket) => {
             if(socket.user_id.toString() === userID.toString()) {
-                return client = socket;
+                socket.join(roomId.toString());
             }
         });
-
-        return client;
     }
 }
 
