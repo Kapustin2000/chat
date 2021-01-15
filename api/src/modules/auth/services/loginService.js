@@ -21,7 +21,7 @@ const LoginService = {
            throw "Wrong credantionals";
        }
 
-       const validPass = user.comparePassword(password);
+       const validPass = await user.comparePassword(password);
 
        if(validPass) {
            return {
