@@ -1,5 +1,6 @@
 import { User } from 'src/modules/user/user.model';
 import { RegisterValidation } from 'src/modules/auth/services/validator';
+import { Role } from 'src/modules/user/role.model';
 
 const RegService = {
     async reg(data) {
@@ -10,14 +11,14 @@ const RegService = {
            throw error.details[0].message;
        }
 
-       const { name, email, role, password } = data;
+       const { name, email, password } = data;
 
        this.checkIfEmailIsBusy(email);
 
        let user = new User({
            email: email,
            name: name,
-           role: role
+           role: await Role.findOne({ name: 'Client'}).then(role => { return role._id})
        });
 
         await user.setPassword(password);
