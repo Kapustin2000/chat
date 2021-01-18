@@ -33,7 +33,7 @@ const RegService = {
         const emailExists = await User.findOne({email: email});
 
         if(emailExists) {
-            throw "email exists";
+            return res.json({ message: "Email exists."}).status(500);
         }
     }
 };
