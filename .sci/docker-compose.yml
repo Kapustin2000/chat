@@ -33,6 +33,6 @@ services:
     container_name: db
     image: mongo:4
     volumes:
-      - ./../.data/data:/data/db
+      - ../.data/data:/data/db
     ports:
          - 27017:27017
