@@ -35,6 +35,6 @@ services:
       context: .
       dockerfile: ./docker/mongo/dev.mongo.dockerfile
     volumes:
-      - ../.data/data:/data/db
+      - ../../.data/data:/data/db
     ports:
          - 27017:27017
