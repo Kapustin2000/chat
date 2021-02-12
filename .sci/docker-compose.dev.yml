@@ -38,3 +38,13 @@ services:
       - ../../.data/data:/data/db
     ports:
          - 27017:27017
+  web:
+    restart: always
+    build:
+      context: ../web
+      dockerfile: Dockerfile
+    container_name: web
+#    volumes:
+#      - ../api:/usr/src/app
+    environment:
+      - HTTP_PORT=3000
