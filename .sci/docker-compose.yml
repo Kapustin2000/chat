@@ -39,7 +39,7 @@ services:
   web:
     restart: always
     build:
-      context: ../web
+      context: ../react
       dockerfile: Dockerfile
     container_name: web
 #    volumes:
