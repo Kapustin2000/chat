@@ -1,6 +1,12 @@
 FROM node:12-alpine as builder
-WORKDIR /app
-COPY package.json /app/package.json
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
 RUN npm install
-COPY . /app
+COPY . .
+
+EXPOSE 3000
+
 RUN npm run start
