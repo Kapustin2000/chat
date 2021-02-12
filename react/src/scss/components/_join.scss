@@ -1,0 +1,72 @@
+.join {
+  position: relative;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include respond-to(phone) {
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  &__inner {
+    text-align: center;
+    padding-bottom: 200px;
+    @include respond-to(phone) {
+      // padding-bottom: 100px;
+    }
+  }
+  &__title {
+    margin: 0 0 25px;
+    font-weight: 600;
+    font-size: 88px;
+    color: #fff;
+    @include respond-to(phone) {
+      font-size: 28px;
+      margin: 0 0 25px;
+    }
+  }
+  &__text {
+    font-size: 26px;
+    color: #fff;
+    margin: 0 auto 45px;
+    max-width: 500px;
+    @include respond-to(phone) {
+      font-size: 18px;
+      margin: 0 0 42px;
+    }
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      359.6deg,
+      #09203f 1.5%,
+      #32516e 58.92%,
+      #537895 106.91%,
+      #537895 106.91%
+    );
+    z-index: -1;
+  }
+  .btn {
+    &:first-of-type {
+      margin-right: 50px;
+      @include respond-to(phone) {
+        width: 125px;
+        margin-right: 20px;
+      }
+    }
+    &:nth-of-type(2) {
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: none;
+      color: #fff;
+    }
+  }
+}

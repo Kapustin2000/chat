@@ -1,0 +1,16 @@
+.popup-content {
+  margin-top: 20px;
+  .members {
+    &__item {
+      margin-bottom: 0;
+      padding: 10px 20px;
+      &-content {
+        margin-right: 15px;
+      }
+    }
+    .avatar {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}

@@ -1,0 +1,83 @@
+.topbar {
+  box-sizing: border-box;
+  padding: 15px 80px 15px 30px;
+  background: #ffffff;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80px;
+  max-height: 80px;
+  position: relative;
+
+  @include respond-to(phone) {
+    z-index: 20;
+    padding: 25px 20px;
+    box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+  }
+
+  .burger {
+    width: 32px;
+    cursor: pointer;
+
+    @include respond-to(phone) {
+      position: absolute;
+      top: 30px;
+      left: 20px;
+    }
+
+    &__block {
+      display: block;
+      width: 32px;
+      height: 4px;
+      background: #cfcfcf;
+      border-radius: 3px;
+      &:not(:last-of-type) {
+        margin-bottom: 4px;
+      }
+    }
+  }
+
+  &__content {
+    text-align: right;
+    overflow: hidden;
+    @include respond-to(phone) {
+      text-align: center;
+    }
+    span {
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(9, 32, 63, 0.4);
+      user-select: none;
+    }
+  }
+  &__members {
+    @include respond-to(phone) {
+      overflow: hidden;
+      padding: 0px 40px 0 50px;
+    }
+    p {
+      margin: 0;
+      font-weight: 600;
+      font-size: 24px;
+      color: rgba(9, 32, 63, 0.6);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      @include respond-to(phone) {
+        text-align: center;
+      }
+    }
+  }
+
+  &__back {
+    display: none;
+    @include respond-to(phone) {
+      display: block;
+      position: absolute;
+      top: 30px;
+      right: 20px;
+    }
+  }
+}

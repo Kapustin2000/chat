@@ -1,0 +1,87 @@
+.messages {
+  overflow-y: auto;
+  flex: 1;
+  box-sizing: border-box;
+  padding: 30px;
+
+  @include respond-to(phone) {
+    padding: 20px;
+  }
+
+  &__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+
+  &__history {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    @include respond-to(phone) {
+      align-items: flex-end;
+    }
+    &:not(:last-of-type) {
+      margin-bottom: 15px;
+    }
+    .avatar {
+      width: 60px;
+      height: 60px;
+      margin-right: 20px;
+      @include respond-to(phone) {
+        width: 45px;
+        min-width: 45px;
+        height: 45px;
+        margin-right: 13px;
+        font-size: 20px;
+      }
+    }
+    &-content {
+      background: #ffffff;
+      box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.08);
+      border-radius: 24px 24px 24px 0px;
+      max-width: 320px;
+      padding: 12px 20px;
+      box-sizing: border-box;
+      word-break: break-word;
+    }
+
+    p {
+      display: inline-block;
+      margin: 0;
+      font-size: 14px;
+      line-height: 17px;
+      color: #646464;
+    }
+
+    &--is-me {
+      flex-direction: row-reverse;
+      .messages__item-content {
+        background: #5a7b96;
+        box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 24px 24px 0px 24px;
+        p {
+          color: #ffffff;
+        }
+      }
+
+      & {
+        .avatar {
+          margin-right: 0;
+          margin-left: 20px;
+          @include respond-to(phone) {
+            margin-left: 13px;
+          }
+        }
+      }
+    }
+  }
+}

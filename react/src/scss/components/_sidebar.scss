@@ -1,0 +1,126 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  color: #fff;
+  width: calc(515 / 1920 * 100%);
+  height: 100%;
+  left: -1000px;
+  transition: left 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  z-index: 30;
+  @include respond-to(phone) {
+    width: 100%;
+  }
+  &__inner {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 0 35px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include respond-to(phone) {
+      padding: 0px 25px;
+    }
+  }
+  &__preview {
+    padding: 30px;
+    box-sizing: border-box;
+    @include respond-to(phone) {
+      padding: 15px;
+    }
+  }
+  &__close {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    display: none;
+    @include respond-to(phone) {
+      display: block;
+    }
+  }
+  &--visible {
+    left: 0;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      359.6deg,
+      #09203f 1.5%,
+      #32516e 58.92%,
+      #537895 106.91%,
+      #537895 106.91%
+    );
+    z-index: -1;
+  }
+  text-align: center;
+  .avatar {
+    width: 118px;
+    height: 118px;
+    margin: 0 auto 25px;
+    font-size: 42px;
+    @include respond-to(phone) {
+      width: 80px;
+      height: 80px;
+    }
+  }
+  h1 {
+    font-size: 44px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    @include respond-to(phone) {
+      font-size: 24px;
+    }
+  }
+  p {
+    font-weight: 400;
+    font-size: 24px;
+    &:nth-of-type(2) {
+      font-size: 16px;
+      margin-bottom: 40px;
+      @include respond-to(phone) {
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+    }
+    @include respond-to(phone) {
+      font-size: 20px;
+    }
+  }
+  .btn {
+    margin: auto auto 50px;
+  }
+
+  &__contacts {
+    margin: 0 auto;
+    &-phone,
+    &-message {
+      display: flex;
+      align-items: center;
+      img {
+        margin-right: 25px;
+        @include respond-to(phone) {
+          margin-right: 20px;
+        }
+      }
+      span {
+        font-size: 16px;
+        @include respond-to(phone) {
+          font-size: 14px;
+        }
+      }
+    }
+    &-phone {
+      margin-bottom: 15px;
+    }
+  }
+}

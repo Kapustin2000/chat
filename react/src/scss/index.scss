@@ -1,0 +1,48 @@
+@import 'utils/fonts';
+@import 'utils/mixins';
+
+@import 'components/chat';
+@import 'components/chats-list';
+@import 'components/messages';
+@import 'components/sidebar';
+@import 'components/members';
+@import 'components/auth';
+@import 'components/btn';
+@import 'components/avatar';
+@import 'components/topbar';
+@import 'components/chatInput';
+@import 'components/join';
+@import 'components/react-popup';
+
+html,
+body #root,
+.main-container,
+.wrapper {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  background: #f2f2f2;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  @include respond-to(phone) {
+    width: 2px;
+  }
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(30, 85, 127, 0.3);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
