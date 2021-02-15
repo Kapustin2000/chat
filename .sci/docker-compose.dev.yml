@@ -38,13 +38,12 @@ services:
       - ../../.data/data:/data/db
     ports:
          - 27017:27017
-  web:
+  react:
     restart: always
     build:
       context: ../react
       dockerfile: Dockerfile
-    container_name: web
-#    volumes:
-#      - ../api:/usr/src/app
+    container_name: react
+    stdin_open: true
     environment:
       - HTTP_PORT=3000

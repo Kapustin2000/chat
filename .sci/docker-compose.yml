@@ -18,7 +18,7 @@ services:
 
   api:
     restart: always
-    build: 
+    build:
       context: ../api
       dockerfile: Dockerfile
     container_name: api
@@ -36,12 +36,13 @@ services:
       - ../../.data/data:/data/db
     ports:
          - 27017:27017
-  web:
+  react:
     restart: always
     build:
       context: ../react
       dockerfile: Dockerfile
-    container_name: web
+    container_name: react
+    stdin_open: true
 #    volumes:
 #      - ../api:/usr/src/app
     environment:
