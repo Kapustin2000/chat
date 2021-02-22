@@ -43,7 +43,7 @@ services:
       dockerfile: Dockerfile
     container_name: react
     stdin_open: true
-#    volumes:
-#      - ../api:/usr/src/app
+    volumes:
+      - ../react/build:/usr/share/nginx/html
     environment:
       - HTTP_PORT=3000
