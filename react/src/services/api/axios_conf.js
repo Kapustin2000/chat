@@ -2,7 +2,7 @@ import axios from 'axios';
 import store from '../../store/store';
 import { logoutAction } from '../../store/actions/user';
 const axiosInstance = axios.create({
-  baseURL: 'https://api.chat.coelix.online/api',
+  baseURL: 'http://mesichon.net/api',
   responseType: 'json',
 });
 
